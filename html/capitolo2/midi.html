@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1 Musical Instrument Digital Interface &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="2 Tecnologie e strumenti software" href="index.html"/>
+        <link rel="next" title="2.2 Kontakt Script Processor" href="kontakt.html"/>
+        <link rel="prev" title="2 Tecnologie e strumenti software" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2 Tecnologie e strumenti software</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo3/index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">2 Tecnologie e strumenti software</a> &raquo;</li>
+      
+    <li>2.1 Musical Instrument Digital Interface</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="musical-instrument-digital-interface">
+<h1>2.1 Musical Instrument Digital Interface<a class="headerlink" href="#musical-instrument-digital-interface" title="link permanente per questa intestazione">¶</a></h1>
+<div class="section" id="lo-standard">
+<h2>2.1.1 Lo standard<a class="headerlink" href="#lo-standard" title="link permanente per questa intestazione">¶</a></h2>
+<p>Il Musical Instrument Digital Interface (MIDI) standard, nato negli anni &#8216;80,
+comprende sia una specificia hardware, che un protocollo di comunicazione per
+i dispositivi musicali elettronici, come tastiere, computer ecc.. I dati MIDI
+possono essere sia trasmessi durante le performance, che essere memorizzati
+per l&#8217;editing o playback successivo.</p>
+<p>In questo paragarafo vogliamo, pur senza pretese di completezza, esporre
+alcune caratteristiche base del MIDI <a class="reference internal" href="../zbiblio.html#midi" id="id1">[15]</a> che saranno utili
+nell&#8217;esposizione del nostro lavoro.</p>
+<p>I dati MIDI viaggiano da un dispositivo all&#8217;altro, sotto forma di <strong>messaggi
+MIDI</strong>. I differenti tipi di messaggi MIDI sono distinti dal primo byte del
+messaggio stesso noto come <strong>byte di stato</strong>, il quale definisce la tipologia
+di messaggio, seguito dai cosiddetti <strong>byte di dati</strong> che contengono i dati
+veri e propri. I messaggi MIDI più comuni sono composti dal byte di stato più
+due byte di dati e sono detti <strong>short message</strong> e sono utilizzati per
+trasmettere informazioni sulle note da riprodurre; lo standard prevede messaggi
+più lunghi, adoperati usualmente per veicolare informazioni accessorie come il
+metro della misura, il nome della composizione, etc..</p>
+</div>
+<div class="section" id="short-message">
+<h2>2.1.2 Short message<a class="headerlink" href="#short-message" title="link permanente per questa intestazione">¶</a></h2>
+<p>Descriviamo qui gli short message MIDI che sono pertinenti al nostro
+lavoro, specificando per brevità solo il significato dei byte di dati:</p>
+<dl class="docutils">
+<dt>NOTE_ON</dt>
+<dd><ul class="first last simple">
+<li>primo byte: <strong>pitch</strong> (altezza) della nota da suonare,</li>
+<li>secondo byte: <strong>velocity</strong> (intensità) della nota da suonare.</li>
+</ul>
+</dd>
+<dt>NOTE_OFF</dt>
+<dd><ul class="first last simple">
+<li>primo byte: pitch della nota da silenziare,</li>
+<li>secondo byte: velocity della nota da silenziare, usualmente 0.</li>
+</ul>
+</dd>
+</dl>
+<p>Osserviamo che un NOTE_ON con velocity pari a 0 è interpretato come un NOTE_OFF.</p>
+<dl class="docutils">
+<dt>CONTROL_CHANGE</dt>
+<dd><ul class="first last simple">
+<li>primo byte: <strong>numero</strong> del controllo,</li>
+<li>secondo byte: <strong>valore</strong> del controllo.</li>
+</ul>
+</dd>
+</dl>
+<p>I messaggi di CONTROL_CHANGE servono, tipicamente, a trasmettere informazioni
+di controllo, come nel nostro caso, il grado di apertura o chiusura del <em>charleston</em>.</p>
+</div>
+<div class="section" id="tick-risoluzione-e-bpm">
+<h2>2.1.3 Tick, risoluzione e BPM<a class="headerlink" href="#tick-risoluzione-e-bpm" title="link permanente per questa intestazione">¶</a></h2>
+<p>Una caratteristica centrale del protoccollo MIDI è che i dati sono trasmessi
+tra i dispositivi in tempo reale, in un &#8220;flusso&#8221;. Essi non contengono di per
+sé informazioni di temporizzazione, ogni messaggio viene elaborato al suo
+arrivo, dunque si presume esso giunga nel momento giusto.</p>
+<p>I messaggi MIDI possono essere memorizzati da un sequencer (usualmente è
+un software in esecuzione su un computer) che li immagazzina come <strong>eventi
+MIDI</strong>, ossia messaggi MIDI con in aggiunta un&#8217;informazione di
+temporizzazione, che specifica <em>quando</em> è stato originato il messaggio,
+e per cui viene utilizzata una unità di misura denominata <strong>tick</strong>.</p>
+<p>Osserviamo che il tick non è una misura assoluta di tempo (espressa in
+frazioni di secondo), ma una misura relativa alla <strong>risoluzione</strong> che è
+appunto il numero di tick contenuti in un quarto. Per calcolare la durata
+<span class="math">\(t\)</span> in secondi di un tick, è necessario pertanto conoscere i <em>Beat Per
+Minute</em> (<strong>BPM</strong>), ossia il numero di quarti per minuto. Se la risoluzione vale <span class="math">\(R\)</span>, allora:</p>
+<div class="math">
+\[\begin{split}t = \frac{ 60 }{ R \times BPM }&nbsp;s\end{split}\]</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kontakt.html" class="btn btn-neutral float-right" title="2.2 Kontakt Script Processor">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="2 Tecnologie e strumenti software"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

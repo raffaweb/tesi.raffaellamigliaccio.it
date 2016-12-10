@@ -1,0 +1,116 @@
+Nuove funzionalità
+==================
+
+La raccolta del materiale audio, la progettazione e sviluppo
+dell'applicazione, nonché le fasi di validazione del lavoro svolto hanno
+comportato un notevole sforzo e hanno richiesto molto tempo. Questo anche in
+funzione delle criticità del linguaggio di programmazione offerto dallo
+strumento che abbiamo scelto e alla scarsezza della documentazione che, in
+alcuni casi, hanno reso necessarie molteplici iterazioni di sviluppo prima di
+poter conseguire i risultati che ci eravamo prefissati.
+
+Durante lo svolgimento dello stage, sono emerse una serie di possibili
+migliorie da apportare al software che non è stato possibile attuare nel tempo
+a disposizione; per questa ragione, ne diamo una breve descrizione nel seguito
+con l'intento di tracciare una possibile strada per gli sviluppi futuri.
+
+
+Gestione a più dimensioni dei pattern
+-------------------------------------
+
+Chiunque ascolti un batterista alle prime armi ed un professionista
+improvvisare su uno stesso ritmo, comprenderebbe immediatamente cosa
+intendiamo nel definire più "complessa" l'esecuzione del secondo rispetto a
+quella del primo: essa avrà più sfumature, più variazioni ritmiche, più
+colore.
+
+Ci piacerebbe che il nostro software consentisse all'utente, dato un pattern,
+di variarne la complessità (nel senso dell'esempio precedente). Per di più, ci
+piacerebbe consentire di variare in modo indipendente la complessità di
+"gruppi" di pezzi della batteria, come ad esempio: il rullante, la cassa, i
+piatti e via discorrendo.
+
+Similmente, come ora il nostro software consente di variare l'intensità
+complessiva di un pattern, ci piacerebbe che anche questo parametro potesse
+essere modificato in modo indipendente per i vari gruppi di pezzi.
+
+In qualche senso, vorremmo implementare una variazione a "tre dimensioni" delle
+caratteristiche di un pattern dove:
+
+- la prima dimensione rappresenti i diversi gruppi;
+- la seconda dimensione le possibili complessità;
+- la terza dimensione i vari gradi di intensità.
+
+
+Il caso delle percussioni
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La struttura a più dimensioni diventa di particolare interesse nel caso delle
+percussioni propriamente dette come, ad esempio, bonghi, congas, timbales,
+tamburelli, triangoli.
+
+Se infatti nella batteria può essere considerato caso abbastanza raro il voler
+modificare complessità ed intensità per gruppi di pezzi (comunque suonati da
+un solo musicista), in un'accompagnamento basato su percussioni (suonate in
+genere da diversi musicisti) è viceversa molto comune voler trattare ciascuno
+strumento in modo indipendente.
+
+Una gestione a più dimensioni dei pattern potrebbe essere quindi di grande
+interesse qualora fosse relizzata in modo sufficientemente generale da
+adattarsi al contempo sia al caso della batteria, che a quello delle
+percussioni.
+
+
+Trasformazioni orientate ai pattern percussivi
+----------------------------------------------
+
+Il nostro software si occupa esclusivamente di pattern percussivi, ma al
+momento le sue funzioni di trasformazione non tengono conto di questa
+specificità così marcata.
+
+Ad esempio, la quantizzazione come descritta nella Sezione :ref:`sec-quantizzazione-label`,
+agisce in modo omogeneo su tutti gli eventi e in presenza di un *flam*
+[#flam]_  "schiaccerebbe" i due colpi da cui è costituito in uno solo,
+facendone di fatto perdere la sfumatura.
+
+Ci piacerebbe investigare come riconoscere i *flam*, o simili casi particolari,
+in modo automatico (o grazie ad una speciale "marcatura" degli eventi
+effettuata in fase di post-produzione) in modo da poter sviluppare funzioni
+di trasformazione più specifiche.
+
+Secondo l'esempio precedente, potremmo sviluppare delle funzioni di
+trasformazione temporale che offrano:
+
+- una forma di quantizzazione che rispetti tali casi (non alterando il
+  tempo degli eventi coinvolti);
+- una sorta di "semplificazione" che, viceversa, sia in grado di
+  eliminarli.
+
+
+Interfaccia utente
+------------------
+
+Osservando il risultato finale dell'applicazione, è evidente che l'interfaccia
+utente che abbiamo sviluppato è quanto meno minimale. Come già detto, dati i
+vincoli temporali, ci siamo infatti limitati a mettere a disposizione
+dell'utente, con chiarezza e semplicità d'uso, tutte le funzionalità
+implementate dal software, pur senza pretesa di farlo con un aspetto
+accattivante.
+
+D'altro canto, se vogliamo che questa applicazione si possa rivolgere ad un
+pubblico più ampio, diventando magari un prodotto commerciale, sarà necessario
+intraprendere uno studio più approfondito dell'interazione con l'utente, ad
+esempio secondo quanto suggerito in  :cite:`MusicHCI`. Dopo tale studio, si
+potrebbe procedere ad implementare elementi di interfaccia personalizzati, pur
+nei limiti imposti da NI Kontakt che non consente un completo controllo della
+GUI.
+
+.. only:: html or text
+
+  .. rubric:: Note
+
+.. [#flam]
+   Un *flam* consiste in due colpi singoli suonati da mani alterne: il primo colpo meno intenso,
+   seguito da un colpo primario più forte della mano opposta. I due colpi sono suonati quasi
+   simultaneamente e sono intesi suonare come un sol colpo.
+

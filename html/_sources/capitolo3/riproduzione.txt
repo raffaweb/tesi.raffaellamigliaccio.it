@@ -1,0 +1,200 @@
+Riproduzione dei pattern
+========================
+
+Il punto di forza del nostro software è la possibilità che offre all'utente di
+comporre le sequenze ritmiche a suo piacimento, è perciò naturale aspettarsi
+che la riproduzione dei pattern segua una logica non banale. Essa può essere
+descritta efficacemente dal diagramma in Figura :num:`fig-stati-label`.
+
+.. _fig-stati-label:
+
+.. figure:: /images/stati.*
+  :scale: 80%
+  :align: center
+
+  diagramma di stato della riproduzione.
+
+I possibili stati corrispondono al tipo di pattern in riproduzione, o a
+*stop*. Non tutte le transizioni di stato sono possibili, questo a causa della
+struttura della parte ritmica in una composizione musicale: nel diagramma
+indichiamo con una linea tratteggiata quelle che l'utente può *causare tramite
+l'interfaccia utente* (a meno di quelle verso lo stato di stop, che sono
+sempre possibili), vicerversa con una linea continua quelle che risultano
+*necessarie* per via della struttra ritmica (ed avvengono al termine del
+pattern).
+
+Le questioni principali che abbiamo affrontato nell'implementazione della
+riproduzione dei pattern sono stati i seguenti:
+
+- la riproduzione degli eventi MIDI con la corretta temporizzazione,
+- la gestione delle transizioni di stato,
+
+che tratteremo in dettaglio nelle Sezioni seguenti.
+
+
+Temporizzazione
+---------------
+
+Una volta che il pattern è stato preparato nei vettori `%play`, per riprodurlo
+è necessario impartire a KSP una serie di comandi di NOTE ON e NOTE OFF in
+corrispondenza dei *tick* indicati in `%play_pos`.
+
+Una funzionalità essenziale offerta da KSP è il callback **listener** che
+viene invocato periodicamente da Kontakt allo specificato intervallo di tick;
+osserviamo che il legame tra i tick ed il tempo (in secondi) è gestito da
+Kontakt in due modi sostanzialmente diversi:
+
+- in funzione dei BPM impostati nel software stesso (vedi Figura
+  :num:`fig-bpm-label`) ,
+- oppure in funzione della temporizzazione derivante dalla DAW in cui viene
+  utilizzato.
+
+.. _fig-bpm-label:
+
+.. figure:: /images/bpm.*
+  :scale: 60%
+  :align: center
+
+  temporizzazione gestita dal "master" di Kontakt.
+
+
+Per riprodurre il pattern, procediamo nel modo seguente:
+
+- suddividiamo il tempo della riproduzione in beat,
+- configuriamo il listener in modo che venga invocato una volta per beat,
+- riproduciamo gli eventi all'interno del beat corrente tramite un ciclo.
+
+Per gestire la temporizzazione all'interno del ciclo, per ogni coppia di
+eventi consecutivi, consideriamo la loro distanza in tick `$diff` e
+effettuiamo la chiamata::
+
+	wait( tick_to_ms( $diff ) )
+
+dove `wait` è una funzione che attende lo specificato numero di microsecondi e
+`tick_to_ms` è una funzione che converte una durata in tick nella
+corrispondente durata in microsecondi in accordo alla logica di
+temporizzazione discussa in precedenza.
+
+.. _sec-beatbar-label:
+
+Transizioni di stato
+--------------------
+
+Da un punto di vista musicale, le transizioni tra pattern non possono avvenire
+in momenti arbitrari, ma il buon senso suggerisce che accadano solo in
+occasione del passaggio:
+
+- tra un beat ed il successivo,
+- tra una misura e la successiva;
+
+sebbene dal punto di vista musicale i cambi alla misura risultino più sensati
+(perché, ad esempio, riproducono un pattern nella sua completezza), per
+consentire una maggiore libertà durante la riproduzione e dare maggiore
+responsività all'interfaccia utente, abbiamo considerato anche i cambi al
+beat.
+
+Osserviamo che, come discusso in precedenza, alcune transizioni sono originate
+dall'interfaccia utente e potrebbero causare pertanto eventi asincroni
+rispetto al flusso di esecuzione del programma (eventi cioè che possono
+avvenire in qualunque istante non deciso in anticipo dal programmatore).
+
+D'altro canto, la nostra scelta di riprodurre i pattern beat per beat unita
+alla decisione di consentire transizioni solo in occasione del beat, o della
+misura, ci ha permesso una sorta di gestione sincrona.
+
+Più in dettaglio, gli eventi di interfaccia utente sono gestiti (in modo
+asincrono) dai relativi callback che si limitano ad annotare in opportune
+variabili le modifiche di stato richieste dall'utente. Periodicamente, ad ogni
+beat, il codice del listener verifica se è necessario attuare cambiamenti di
+stato, sia a causa dell'interfaccia utente che delle transizioni necessarie, e
+li effettua (in modo sincrono) prima di procedere alla riproduzione del beat
+corrente.
+
+Questo approccio ha di molto semplificato la stesura del codice ed ha risolto
+una quantità di problemi di conccorrenza e sincronizzazione che sarebbe stato
+molto arduo trattare dati i limiti imposti da KSP.
+
+
+Interfaccia utente
+------------------
+
+L’interfaccia utente (UI) è importante in qualsiasi programma poiché determina
+l’efficacia e validità pratica degli obiettivi che ci si è preposti.
+
+È fondamentale differenziare, come viene fatto in letteratura, la generica UI
+dalla Graphical User Interface (GUI) :cite:`UI`. La seconda è parte integrante
+della prima, ma ne costituisce l'aspetto più esteriore e superficiale.
+
+Essendo questa una prima implementazione della nostra soluzione, non ci siamo
+soffermati a creare una vera e propria GUI, ma abbiamo usato gli elementi di
+GUI offerti da Kontakt, con il solo fine di poter verificare le funzionalità
+implementate.
+
+Abbiamo, però, avuto l'accortezza di usare elementi di interfaccia che
+potessero essere customizzati in futuro (non tutti gli elementi di GUI di
+Kontakt possono esserlo): come si vede dalle Figure :num:`fig-uistop-label` e
+:num:`fig-uiplay-label` alcune scelte non sembrano visualmente accattivanti,
+ma sono le uniche che ci permetteranno di creare una vera e propria GUI.
+
+Abbiamo scelto queste due figure, in quanto rappresentano i due stati
+principali dell'applicazione, la Figura :num:`fig-uistop-label` rappresenta lo
+stato di stop mentre la Figura :num:`fig-uiplay-label` quello di play, in
+particolare mostra l’interfaccia mentre un groove è in riproduzione.
+
+.. _fig-uistop-label:
+
+.. figure:: /images/uistop.*
+  :scale: 70%
+  :align: center
+
+  l'interfaccia utente nello stato stop.
+
+
+Vediamo i dettagli dell'interfaccia, sono presenti:
+
+- il *file selector* che consente di scegliere la song da caricare;
+
+- i bottoni che consentono di cambiare lo stato e sono denominati come i tipi
+  (intro, outro, groove e fill), osserviamo che non sono tutti visibili allo
+  stesso tempo per via delle transizioni illustrate nella Figura
+  :num:`fig-stati-label`;
+
+- gli *slider* [#slider]_, sotto ogni tipo, i quali permettono
+  di scegliere uno tra i pattern disponibili;
+
+- i bottoni che consentono di scegliere se effettuare le
+  :ref:`transizioni al beat o alla misura <sec-beatbar-label>`;
+
+- i bottoni che consentono di scegliere uno tra le tre opzioni offerte
+  dalla :ref:`trasformazione del tempo <sec-tempo-label>`;
+
+- il bottone *export* che consente di esportare il pattern,
+  eventualmente fuso e trasformato, in esecuzione;
+
+- gli *slider* che permettono di controllare i paramentri delle trasformazioni
+  :ref:`quantizzazione <sec-quantizzazione-label>`, :ref:`swing <sec-swing-label>`,
+  e :ref:`intesità <sec-intensita-label>`;
+
+- il menù che consente di scegliere la risoluzione della quantizzazione e swing;
+
+- alcuni elementi informativi tra i quali spicca quello (posizionato sopra
+  l'etichetta swing) che permette di seguire il beat in esecuzione all'interno
+  della misura.
+
+.. _fig-uiplay-label:
+
+.. figure:: /images/uiplay.*
+  :scale: 70%
+  :align: center
+
+  l'interfaccia utente nello stato groove.
+
+
+.. only:: html or text
+
+  .. rubric:: Note
+
+.. [#slider]
+   Questo è uno di quei casi in cui avremmo preferito usare un'altro elemento di
+   interfaccia, chiamato *knob*, ma abbiamo optato per uno slider a causa della
+   sua capacità di essere personalizzato graficamente in una fase successiva.

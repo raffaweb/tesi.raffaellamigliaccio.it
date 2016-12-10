@@ -1,0 +1,119 @@
+Kontakt Script Processor
+========================
+
+Una delle caratteristiche che rende NI Kontakt molto interessante per il Sound
+Design moderno è che il suo comportamento è in parte programmabile, è cioè
+possibile personalizzare in modo sufficientemente approfondito le funzionalità che rende
+disponibili.
+
+Con questo intendiamo dire che esso comprende un processore, denominato
+*Kontakt Script Processor* in grado di interpretare degli script scritti in un
+linguaggio proprietario denominato *Kontakt Scripting Language*.
+
+Gli script permettono di creare molto più di semplici "plugin" in quanto
+possono accedere a diverse funzionalità interne di Kontakt quali, ad esempio:
+
+- gestione dei campioni audio,
+- gestione di eventi e file MIDI,
+- riproduzione di note (tramite i campioni),
+- controllo dei parametri audio (filtri, forme d'onda, etc.),
+- definizione e gestione di elementi di interfaccia utente.
+
+Nonostante questo motore di scripting offra grosse potenzialità, a volte
+risulta complesso sfruttarle a pieno a causa di alcune limitazioni insite nel
+linguaggio stesso e nell'ambiente di programmazione.
+
+Diamo di seguito una illustrazione di massima delle limitazioni caratteristiche del linguaggio:
+
+- i *tipi di dato* si limitano ad interi e stringhe, nonché vettori
+  monodimensionali dei medesimi;
+
+- lo *scoping delle variabili* è esclusivamente globale, non esistono
+  variabili locali, nonostante il linguaggio permetta una forte concorrenza:
+  nella documentazione non viene specificato se l'accesso in memoria a tali
+  variabili sia atomico o meno.
+
+
+- le *espressioni* si limitano alle usuali espressioni aritmetiche per gli
+  interi, a quelle logiche e, per le stringhe, alla sola concatenazione e
+  comparazione (limitatamente all'uguaglianza);
+
+- le *strutture di controllo* comprendono: la sequenza, la selezione
+  (secondo il costrutto binario `if`/`else`, ed un costrutto ennario
+  `select`/`case`, simile allo `switch` di C) e l'iterazione (col
+  solo costrutto `while` e senza i costrutti di alterazione del flusso
+  `break` o `continue`);
+
+- è possibile definire *funzioni*, ma non è previsto il passaggio di
+  parametri, o la restituzione di valori: tutta la comunicazione
+  avviene tramite l'uso di variabili globali;
+
+- non è possibile *modularizzare* il codice (suddividendolo in moduli
+  che limitino la visibilità delle variabili), è si possibile avere
+  fino a cinque script diversi in esecuzione, ma la comunicazione
+  tra essi avviene con una sorta di meccanismo di memoria
+  condivisa molto primitivo;
+
+Il codice è organizzato in **callback**, una sorta di gestori di interruzione
+(*interrupt handler* nel senso dei sistemi operativi :cite:`SO`), la cui esecuzione
+viene invocata dal motore in modo asincrono in corrispondenza di eventi
+esterni (come ad esempio eventi MIDI, o di interfaccia utente), o in modo
+periodico. Mancando però totalmente costrutti di gestione della concorrenza e
+non essendoci parola nella documentazione circa l'atomicità dell'accesso alle
+variabili, che ricordiamo sono solo globali [#poly]_, questa organizzazione
+del codice rende impossibile avere certezze su come evitare, ad esempio,
+condizioni di corsa (*race conditions*).
+
+
+L'esecuzione parallela tra callback è gestita molto malamente in quanto c'è
+una sorta di mescolanza tra l'approccio cooperativo e quello *preemptive*: un
+callback può cedere il controllo (approccio cooperativo) invocando la funzione
+`wait` (che ne sospende l'esecuzione per un tempo specificato), ma se non lo fa
+entro un tempo prefissato, il controllo gli viene sottratto (approccio
+preemptive) e mai più restituito! Il comportamento appena descritto avviene,
+ad esempio, in presenza di cicli con un elevato numero di iterati (dell'ordine
+delle decine di migliaia) che non contengono chiamate alla funzione `wait`: in
+questo caso il motore ne interrompe l'esecuzione segnalando un errore (vedi Figura
+:num:`fig-errore-label`), ma senza fornire alcun modo per gestirlo. Ecco il
+motivo per cui, abbiamo visto nel manuale, che i cicli sono pieni di chiamate
+`wait(1)`, le quali non avrebbero altra spiegazione.
+
+.. _fig-errore-label:
+
+.. figure:: /images/errore.*
+  :scale: 80%
+  :align: center
+
+  messaggio d'errore derivante da ciclo con "troppi" iterati.
+
+Detto questo, possiamo affermare che un linguaggio con le caratteristiche
+sopra descritte rende la programmazione alquanto ostica, esponendo il codice
+ad errori di programmazione molto difficili da individuare e controllare.
+
+Oltre questi difetti insiti nel linguaggio stesso, ci sono delle limitazioni
+anche nelle funzioni di gestione dell'I/O che rendono macchinoso adoperare
+dati e informazioni esterne.
+
+In ultima analisi dobbiamo dire che le limitazioni più eclatanti riguardano
+proprio la gestione dei file MIDI e questo riteniamo sia inammissibile per un
+software musicale. Esso permette di accedere ad un solo file MIDI per volta
+(esiste un solo buffer, denominato "MIDI object" dove è possibile caricare un
+solo file per volta). Inoltre non sono gestiti tutti gli eventi previsti dallo
+standard MIDI, ma soltanto gli short message; risulta quindi impossibile
+leggere dai file MIDI informazioni fondamentali quali il tempo, o il metro
+della misura.
+
+Se la gestione dei file MIDI è limitata, quella di file di altro formato (ad
+esempio testo) è del tutto assente. Si possono salvare e caricare vettori
+(secondo un formato semplice ma proprietario), ma non si possono leggere file
+di nessun altro formato standard, come ad esempio file di configurazione (come
+i file `.ini` comuni in Windows o i `,properties` di Java).
+
+.. only:: html or text
+
+  .. rubric:: Note
+
+.. [#poly]
+   In realtà esistono variabli dette "polifoniche" che, almeno in contesti
+   molto particolari come i callback relativi agli eventi nota, consentono
+   una protezione dalle condizioni di corsa.

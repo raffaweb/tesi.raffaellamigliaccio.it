@@ -1,0 +1,14 @@
+**********************************************************************************
+Scripting KSP per la Gestione e Modifica di Pattern Percussivi MIDI in Tempo Reale
+**********************************************************************************
+
+Tesi di Laurea di Raffaella Migliaccio.
+
+.. toctree::
+   :numbered:
+
+   capitolo1/index
+   capitolo2/index
+   capitolo3/index
+   capitolo4/index
+   zbiblio

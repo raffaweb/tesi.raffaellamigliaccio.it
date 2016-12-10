@@ -1,0 +1,78 @@
+Obiettivi del lavoro
+====================
+
+L'idea che ci ha mosso a sviluppare la soluzione proposta in questa tesi è
+stata la volontà di scrivere un software di supporto a chi si occupa di
+musica, occupandoci nello specifico di ritmi e dello strumento che più li
+rappresenta: la batteria.
+
+Osservando *Studio Drummer*, abbiamo pensato di creare uno strumento simile,
+ma migliorarlo con  quello che secondo noi mancava e cioè una classificazione
+più accurata delle varie parti ritmiche che costituiscono una canzone, dando
+quindi la possibilità all'utente di disporle come preferisce, pur seguendo una
+logica musicale.
+
+
+.. _sec-classificazione-label:
+
+Classificazione delle parti ritmiche di una canzone
+---------------------------------------------------
+
+Definiamo nel seguito con precisione i nomi che useremo nella tesi
+per i **tipi** di parti ritmiche di una canzone:
+
+	Intro
+		Parte iniziale della canzone.
+
+	Groove
+		Definito genericamente *ritmo principale*, il termine groove indica il
+		ritmo predominante della canzone nelle varie parti che la
+		costituiscono (strofe, ritornelli, etc).
+
+	Fill
+		È un passaggio che viene eseguito, ad esempio, tra le varie porzioni di
+		groove, oppure tra un'intro e un groove. Serve per evidenziare una
+		cambiamento nella canzone, o più semplicemenete per dare una sfumatura
+		alla composizione.
+
+	Outro
+		Parte conclusiva della canzone.
+
+
+In seguito utilizzeremo **pattern** per indicare una parte ritmica che appartiene
+a uno di questi tipi. Inoltre, definiremo con il termine **song** una collezione di pattern
+che risultino coerenti dal punto di vista musicale e possano essere abbinati
+in una composizione musicale.
+
+Osserviamo che, all'interno di una composizione musicale, è possibile avere
+più groove e fill che si alternano, mentre avremo generalmente un solo intro e un
+solo outro.
+
+
+La nostra soluzione
+-------------------
+
+Nonostante nella nostra analisi delle soluzioni esistenti abbiamo incontrato
+ottimi prodotti, molti di essi sono risultati limitati sia che si avvantagino
+di essere embedded in una *DAW* (Digital Audio Workstation, software usato
+nella produzione musicale), sia che funzionino indipendentemente da essa.
+
+Sebbene *Studio Drummer* sia tra i rappresentanti dello stato dell'arte esso
+consente solo di scegliere tra sequenze pre-assemblate di intro, groove, fill
+e outro, e le stesse non possono assolutamente essere organizzate in un flusso
+di riproduzione.
+
+
+Dato che Chocolate Audio ha una grande esperienza nella produzione di
+materiale audio abbiamo deciso di approfondire la conoscenza di KSP per
+sviluppare una soluzione innovativa che permettesse di superare i limiti dei
+prodotti presenti sul mercato.
+
+Il punto di forza del nostro software risiede nella possibilità di offrire all'utente di
+personalizzare la propria composizione ritmica scegliendo sia i pattern da
+utilizzare che come assemblarli.
+
+
+
+
+

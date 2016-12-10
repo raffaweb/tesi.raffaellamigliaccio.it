@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.2 Lo stato dell’arte &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="1 Stato dell’arte ed obiettivi della tesi" href="index.html"/>
+        <link rel="next" title="1.3 Obiettivi del lavoro" href="obiettivi.html"/>
+        <link rel="prev" title="1.1 Chocolate Audio" href="chau.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo2/index.html">2 Tecnologie e strumenti software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo3/index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a> &raquo;</li>
+      
+    <li>1.2 Lo stato dell&#8217;arte</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="lo-stato-dell-arte">
+<h1>1.2 Lo stato dell&#8217;arte<a class="headerlink" href="#lo-stato-dell-arte" title="link permanente per questa intestazione">¶</a></h1>
+<p>Prima di iniziare la progettazione e lo sviluppo del prodotto, abbiamo svolto
+una indagine su quello che la concorrenza offre rispetto alle funzionalità
+che ci eravamo proposti di implementare, partendo dal presupposto che volevamo
+progettare del software per il prodotto NI Kontakt.</p>
+<p>Ecco tre tra i migliori prodotti attualmente sul mercato.</p>
+<div class="section" id="apple-logic-pro-x-drummer">
+<span id="sec-logic-label"></span><h2>1.2.1 Apple Logic Pro X Drummer<a class="headerlink" href="#apple-logic-pro-x-drummer" title="link permanente per questa intestazione">¶</a></h2>
+<p><em>Drummer</em> di Apple è inserito all&#8217;interno di <em>Logic Pro X</em> <a class="reference internal" href="../zbiblio.html#logic" id="id1">[7]</a> (e di
+<em>GarageBand</em> <a class="reference internal" href="../zbiblio.html#gb" id="id2">[3]</a>) e in quanto tale non ha la struttura di un plugin, ma
+è parte integrantedell&#8217;applicazione.</p>
+<p>La gestione dei pattern è molto interattiva, come risulta dalla Figura
+<a class="pageref" href="#fig-logic-label">1</a>.</p>
+<div class="figure align-center" id="fig-logic-label">
+<a class="reference internal image-reference" href="../_images/logic.png"><img alt="../_images/logic.png" src="../_images/logic.png" style="width: 1206.9px; height: 350.1px;" /></a>
+<p class="caption">Figura 1: Logic Pro X, di Apple.</p>
+</div>
+<p>Tramite tale interfaccia si può selezionare:</p>
+<ul class="simple">
+<li>il genere musicale;</li>
+<li>il batterista, possibilità che costituisce una sorta di
+personificazione della tecnologia in ambito musicale;</li>
+<li>la &#8220;song&#8221; intesa come macro-struttura di riferimento;</li>
+<li>il pattern, secondo una logica bidimensionale e continua (rappresentata
+dall&#8217;elemento di interfaccia dato dal punto giallo nel riquadro nero) agendo
+su un asse di complessità (da &#8220;simple&#8221; a &#8220;complex&#8221;) e su uno di intensità (da &#8220;soft&#8221; a &#8220;loud&#8221;);</li>
+<li>si possono accendere e spegnere selettivamente i singoli pezzi di batteria,
+o forzare delle variazioni;</li>
+<li>il checkbox &#8220;follow&#8221; offre la possibilità di imporre a Drummer di &#8220;seguire&#8221;
+il ritmo di un&#8217;altra traccia (basso, drum, loop, etc.) per quanto riguarda
+le figurazioni di kick e snare, questa caratteristica è resa possibile
+dal fatto che Drummer è integrato in Logic.</li>
+</ul>
+</div>
+<div class="section" id="toontrack-ezdrummer">
+<h2>1.2.2 Toontrack EZDrummer<a class="headerlink" href="#toontrack-ezdrummer" title="link permanente per questa intestazione">¶</a></h2>
+<p>EZDrummer <a class="reference internal" href="../zbiblio.html#ezdrummer" id="id3">[2]</a> è un prodotto che è sul mercato da diversi anni ed è
+stato aggiornato alla versione 2 da diversi mesi. Si tratta di un &#8220;instrument
+plugin&#8221; dedicato; in quanto tale non ha di per sé tutte le limitazioni imposte
+da Kontakt e dal motore di scripting.</p>
+<p>La sezione per la gestione dei Pattern MIDI è strutturata in modo simile a un
+sequencer MIDI di una <em>Digital Audio Wordkstation</em> (DAW). Dal browser della
+libreria di pattern (parte in alto nella Figura <a class="pageref" href="#fig-ezdrummer-label">2</a>), si
+possono trascinare nell&#8217;apposita zona i diversi pattern e costruire così la
+propria canzone.</p>
+<div class="figure align-center" id="fig-ezdrummer-label">
+<a class="reference internal image-reference" href="../_images/ezdrummer.png"><img alt="../_images/ezdrummer.png" src="../_images/ezdrummer.png" style="width: 639.1px; height: 559.3px;" /></a>
+<p class="caption">Figura 2: EZDrummer 2, di Toontrack.</p>
+</div>
+<p>Esistono due funzioni interessanti in EZDrummer relative alla gestione pattern:</p>
+<ul class="simple">
+<li>la possibilità di suonare un ritmo su un pulsante &#8220;tap&#8221; e fare in modo che
+il motore di ricerca restituisca i Pattern che più somigliano a ciò che
+abbiamo suonato,</li>
+<li>la presenza di un &#8220;song creator&#8221; ovvero di un algoritmo che dati i pattern
+caricati, li concatena in modo appropriato rispetto agli stilemi classici
+della forma canzone.</li>
+</ul>
+<p>Rispetto agli obiettivi che ci siamo posti per questo elaborato, EZDrummer si
+presenta comunque in modo molto rigido in quanto possiede una collezione non
+molto coerente di Pattern e soprattutto la procedura di costruzione della
+composizione è molto strutturata e non consente interazioni vere e proprie in
+tempo reale, obiettivo che invece abbiamo ritenuto importante per il nostro
+lavoro in quanto, oltre a consentire maggiore espressività al musicista,
+costituisce un importante lato &#8220;giocoso&#8221; del fare musica.</p>
+</div>
+<div class="section" id="ni-studio-drummer">
+<h2>1.2.3 NI Studio Drummer<a class="headerlink" href="#ni-studio-drummer" title="link permanente per questa intestazione">¶</a></h2>
+<p>Ci soffermeremo di più su <em>Studio Drummer</em> <a class="reference internal" href="../zbiblio.html#sd" id="id4">[10]</a> che è una libreria per NI
+Kontakt, lo stesso prodotto per il quale abbiamo scelto di sviluppare la nostra
+soluzione.</p>
+<p>Native Instruments <a class="reference internal" href="../zbiblio.html#ni" id="id5">[8]</a> è leader mondiale di hardware e software per la
+produzione di musica basata sull&#8217;uso del computer. L&#8217;azienda si pone
+l&#8217;obiettivo di immettere nel mercato prodotti innovativi e completi in grado
+di soddisfare ogni tipo di esigenza.</p>
+<p>Kontakt (nella versione 5) <a class="reference internal" href="../zbiblio.html#k5" id="id6">[6]</a> è uno dei più importanti campionatori e
+player attualmente in circolazione. Dispone di una libreria
+con più di mille strumenti e circa 43 GB di campioni. Inoltre, tale prodotto
+mette a disposizione un motore di scripting, denominato <em>Kontakt Script
+Processor</em> (KSP), che consente di eseguire script in un linguaggio
+proprietario (deniminato <em>Kontakt Scripting Language</em>), i quali permettono di
+personalizzare in modo versatile ed evoluto il comportamento degli strumenti
+riprodotti da Kontakt.</p>
+<p>La libreria esistente che più si avvicina all&#8217;idea che abbiamo voluto
+implentare è <em>Studio Drummer</em>. Questo consiste in una sorta di batterista virtuale che,
+entro certi limiti, può aiutare il produttore/compositore nella fase di
+pre-produzione o produzione di brani musicali.</p>
+<p>Di tale libreria, qui descriviamo solo la sezione che più ci interessa: quella
+della gestione dei ritmi di batteria.</p>
+<p>Come si vede nella figura <a class="pageref" href="#fig-studiodrummer-label">3</a>, <em>Studio Drummer</em> ha
+molti ritmi, circa tremila, divisi per genere (funk, rock, jazz, pop, ecc.).
+Dispone di due funzioni principali per la manipolazione degli stessi:</p>
+<blockquote>
+<div><blockquote>
+<div><dl class="docutils">
+<dt>Quantizzazione</dt>
+<dd>permette di aggiustare le &#8220;precisione&#8221; del ritmo secondo una griglia
+di figure ritmiche (ottavi, sedicesimi, trentaduesimi).</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>Swing</dt>
+<dd>permettere di aggiungere dello swing al ritmo, dando un &#8220;gusto jazz&#8221;
+anche ad un ritmo rock.</dd>
+</dl>
+</div></blockquote>
+<div class="figure align-center" id="fig-studiodrummer-label">
+<a class="reference internal image-reference" href="../_images/studiodrummer.jpg"><img alt="../_images/studiodrummer.jpg" src="../_images/studiodrummer.jpg" style="width: 508.0px; height: 425.6px;" /></a>
+<p class="caption">Figura 3: la sezione di gestione dei ritmi di <em>Studio Drummer</em></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="obiettivi.html" class="btn btn-neutral float-right" title="1.3 Obiettivi del lavoro">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="chau.html" class="btn btn-neutral" title="1.1 Chocolate Audio"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

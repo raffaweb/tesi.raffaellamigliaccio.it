@@ -1,0 +1,202 @@
+.. _sec-rec-label:
+
+Produzione dei pattern
+======================
+
+Come discusso nella Sezione :ref:`sec-classificazione-label`, abbiamo
+l'esigenza di registrare diversi pattern per ciascun tipo al fine di
+raccogliere il materiale che costituisce la song. Questo processo è descritto
+nelle due Sezioni seguenti.
+
+Nella produzione dei pattern è determinante una classificazione dei generi
+musicali che sia riconoscibile in modo naturale dall’utente :cite:`Bible`. Per
+questa ragione, prima di affrontare la fase di registrazione, è molto
+importante fare un'analisi che riguardi l'obiettivo della produzione e il
+range di diversità che questa dovrà coprire nel prodotto finito, limitando il
+numero di generi, sottogeneri, tempi, BPM a una selezione basata sul gusto, le
+richieste di mercato e la moda del momento.
+
+
+Registrazione
+-------------
+
+I pattern possono essere generati in diversi modi:
+
+- usando un editor all'interno di una DAW;
+- tramite programmazione di "basso livello";
+- tramite esecuzione con tastiera MIDI;
+- tramite esecuzione con pad MIDI specifici per batteristi
+  (detti *e-drums*).
+
+In letteratura :cite:`AES11` :cite:`AES12`, troviamo studi che
+consentono di aiutarci nella creazione di algoritmi efficaci
+nell’umanizzazione di pattern elaborati al computer.
+
+Visto che uno degli obiettivi principali del lavoro è l'autenticità del
+materiale prodotto, abbiamo scelto l'ultima opzione, chiamando un batterista
+a eseguire i pattern su un kit e-drums.
+
+I kit tipicamente utilizzati (per diffusione e per qualità fisica dei pad)
+sono quelli prodotti da Roland :cite:`Roland`: i modelli attualmente di punta sono
+la batteria TD15 e TD30 :cite:`TD30`, riprodotta nella Figura
+:num:`fig-roland-label`.
+
+.. _fig-roland-label:
+
+.. figure:: /images/roland.*
+  :scale: 60%
+  :align: center
+
+  Roland TD-30KV
+
+Questi kit consentono un controllo fine delle caratteristiche esecutive,
+un'ottima resa dinamica e in particolare il charleston ha un controllo
+continuo e con interazione uomo-macchina molto simile a quella di un strumento
+reale :cite:`AES9`.
+
+La registrazione avviene in modo molto simile a qualsiasi altra produzione,
+chiedendo al batterista di suonare in maniera consecutiva i diversi pattern
+che comporranno la song, sfruttando a volte anche l'improvvisazione.
+
+Un altro fattore che generalmente contribuisce alla qualità del risultato è
+far eseguire i pattern usando gli stessi suoni che poi verranno utilizzati
+all'interno del software prodotto, in quanto ciò consente al batterista e al
+produttore di avere una percezione più fedele del risultato finale.
+
+Si è scelta questa tecnica perché garantisce risultati più espressivi da parte
+del musicista coinvolto, anche se comporta un maggiore dispendio di
+tempo in fase di post-produzione.
+
+
+Post-produzione
+---------------
+
+Quando, per la produzione di musica, si utilizza il computer e lo standard
+MIDI :cite:`MIDISeq`, all'esecuzione del musicista spesso segue una fase del
+processo creativo denominata **post-produzione** tramite la quale si ottimizza
+la performance del musicista utilizzando strumenti in grado di manipolare i
+dati nel formato MIDI, cosa che sarebbe molto complesso fare se si fosse
+lavorato in ambito puramente audio.
+
+Le modifiche tipiche includono: la trasposizione in semitoni, il ritardo o anticipo
+temporale e la variazione di altre informazioni MIDI quali la velocity.
+
+In post-produzione, il lavoro si suddivide principalmente in:
+
+- scelta dei pattern (tra quelli registrati);
+
+- eventuale ri-creazione di pattern a partire da frammenti di esecuzioni
+  diverse (qualora il batterista abbia improvvisato, o se dovesse mancare del
+  materiale);
+
+- filtraggio di eventi MIDI generati dal kit e-drums (per Roland tipicamente
+  si parla di messaggi relativi alla posizione di impatto della bacchetta sul
+  rullante, che costituiscono informazioni che noi non intendiamo usare nel
+  nostro lavoro);
+
+- trasformazione degli eventi MIDI: mappatura delle note MIDI secondo quanto
+  richiesto dal plugin di destinazione [#map]_, estensione del range di
+  alcuni eventi [#ext]_;
+
+- correzione musicale mediante trasformazione: si può, a seconda dei casi,
+  applicare una pre-quantizzazione a pattern interi o loro parti per renderli
+  più fluidi (è importante che passando da un pattern all'altro il "feel"  umano
+  rimanga intatto e costante).
+
+
+Formato dei file
+----------------
+
+Al termine della post-produzione vengono prodotte, per ciascun song:
+
+- un file multitraccia MIDI in cui ciascuna traccia corrisponde a un pattern;
+
+- un file di testo contenente: il metro, il BPM e il numero di pattern per
+  tipo.
+
+Dopo aver raccolto il materiale descritto nella Sezione precedente abbiamo
+dovuto individuare un formato adatto all'elaborazione successiva che, per
+ciascuna song, oltre ai veri e propri eventi MIDI, ci consentisse di memorizzare:
+
+- il numero e tipo dei vari pattern;
+
+- il metro della misura e il BPM.
+
+È fuori discussione che tali informazioni non possano essere memorizzate nello
+script stesso. Questo costringerebbe infatti a modificare il codice ogni qual
+volta vengano modificati i file MIDI su cui opera, legando il codice sorgente
+dello script al suo input in modo non accettabile.
+
+Date le limitazioni di KSP che non consentono di leggere agevolmente file di
+configurazione (testuali, o di altro formato) e di manipolare più di un file
+MIDI alla volta, abbiamo deciso di rappresentare le suddette informazioni in
+un unico file MIDI multitraccia.
+
+Poiché, inoltre KSP consente di leggere solo short message abbiamo dovuto
+usare una serie di stratagemmi per rappresentare tramite essi le informazioni
+a noi necessarie.
+
+Riguardo alla necessità di avere più pattern per tipo, abbiamo investigato
+diverse soluzioni possibili. Alcune erano molto pratiche dal punto di vista
+della stesura del codice, ma del tutto impratiche nella fase di
+postproduzione. La soluzione finale a cui siamo arrivati, che costituisce un
+ragionevole compromesso è la seguente.
+
+Ogni song è memorizzata in un singolo file multitraccia in cui ogni traccia
+rappresenta un pattern di uno specifico tipo. Per dividere fra di loro i vari
+tipi (intro, groove, fill, outro), non potendo far uso di alcuna meta
+informazione, abbiamo usato una traccia ad hoc, da noi denominata **empty
+track** la quale è posizionata alla fine di ogni gruppo di tracce di un
+determinato tipo e funge da separatore.
+
+La empty track è costituita dai seguenti eventi MIDI (qui descritti tramite
+il codice Java necessario a generarli):
+
+.. code-block:: java
+
+	new ShortMessage( NOTE_ON, 127, 127 );
+	new ShortMessage( NOTE_OFF, 127, 0 );
+
+Riguardo al metro della misura, necessario per l'elaborazione successiva, lo
+standar MIDI prevede che questo e altri dati come il BPM, il nome della
+traccia…, siano memorizzati sotto forma di meta eventi in quanto non sono fondamentali
+per il MIDI in se stesso.
+
+Non potendo, di nuovo per via dei limiti di KSP, usare la codifica standard
+MIDI, abbiamo deciso di rappresentare tali informazioni con short message
+inseriti in una traccia apposita da noi chiamata **meta track** che abbiamo
+posizionato come prima traccia del file.
+
+La meta track presenta i seguenti eventi MIDI (di nuovo, descritti tramite
+il codice Java necessario a generarli):
+
+.. code-block:: java
+
+	new ShortMessage( NOTE_ON, numeratoreMetro, denominatoreMetro );
+	new ShortMessage( NOTE_ON, bpm / 128, bpm % 128 );
+	new ShortMessage( NOTE_OFF, numeratoreMetro, 0 );
+	new ShortMessage( NOTE_OFF, bpm / 128, 0 );
+
+
+Lo strumento di supporto "InserisciTracceSpeciali"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Al fine di semplificare la fase di post-produzione abbiamo realizzato un
+programma Java che, dato in ingresso il materiale descritto nella Sezione
+:ref:`sec-rec-label`, produce il file MIDI nel formato descritto nella
+Sezione precedente che può essere quindi direttamente utilizzato
+dal nostro script KSP.
+
+
+.. only:: html or text
+
+  .. rubric:: Note
+
+.. [#map]
+   Per esempio Roland mappa il charleston chiuso sulla nota F#1, mentre uno
+   strumento diverso potrebbe associare lo stesso suono ad un'altra nota.
+
+.. [#ext]
+   Alcuni kit e-drums limitano il range del messaggio MIDI relativo all'apertura
+   del charleston ad un massimo di 90, mentre noi vogliamo l'intero intervallo
+   possibile di valori che si estende fino a 127.

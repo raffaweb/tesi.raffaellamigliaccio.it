@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.2 Kontakt Script Processor &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="2 Tecnologie e strumenti software" href="index.html"/>
+        <link rel="next" title="2.3 Strumenti di supporto" href="strumenti.html"/>
+        <link rel="prev" title="2.1 Musical Instrument Digital Interface" href="midi.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2 Tecnologie e strumenti software</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo3/index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">2 Tecnologie e strumenti software</a> &raquo;</li>
+      
+    <li>2.2 Kontakt Script Processor</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="kontakt-script-processor">
+<h1>2.2 Kontakt Script Processor<a class="headerlink" href="#kontakt-script-processor" title="link permanente per questa intestazione">¶</a></h1>
+<p>Una delle caratteristiche che rende NI Kontakt molto interessante per il Sound
+Design moderno è che il suo comportamento è in parte programmabile, è cioè
+possibile personalizzare in modo sufficientemente approfondito le funzionalità che rende
+disponibili.</p>
+<p>Con questo intendiamo dire che esso comprende un processore, denominato
+<em>Kontakt Script Processor</em> in grado di interpretare degli script scritti in un
+linguaggio proprietario denominato <em>Kontakt Scripting Language</em>.</p>
+<p>Gli script permettono di creare molto più di semplici &#8220;plugin&#8221; in quanto
+possono accedere a diverse funzionalità interne di Kontakt quali, ad esempio:</p>
+<ul class="simple">
+<li>gestione dei campioni audio,</li>
+<li>gestione di eventi e file MIDI,</li>
+<li>riproduzione di note (tramite i campioni),</li>
+<li>controllo dei parametri audio (filtri, forme d&#8217;onda, etc.),</li>
+<li>definizione e gestione di elementi di interfaccia utente.</li>
+</ul>
+<p>Nonostante questo motore di scripting offra grosse potenzialità, a volte
+risulta complesso sfruttarle a pieno a causa di alcune limitazioni insite nel
+linguaggio stesso e nell&#8217;ambiente di programmazione.</p>
+<p>Diamo di seguito una illustrazione di massima delle limitazioni caratteristiche del linguaggio:</p>
+<ul class="simple">
+<li>i <em>tipi di dato</em> si limitano ad interi e stringhe, nonché vettori
+monodimensionali dei medesimi;</li>
+<li>lo <em>scoping delle variabili</em> è esclusivamente globale, non esistono
+variabili locali, nonostante il linguaggio permetta una forte concorrenza:
+nella documentazione non viene specificato se l&#8217;accesso in memoria a tali
+variabili sia atomico o meno.</li>
+<li>le <em>espressioni</em> si limitano alle usuali espressioni aritmetiche per gli
+interi, a quelle logiche e, per le stringhe, alla sola concatenazione e
+comparazione (limitatamente all&#8217;uguaglianza);</li>
+<li>le <em>strutture di controllo</em> comprendono: la sequenza, la selezione
+(secondo il costrutto binario <tt class="code docutils literal"><span class="pre">if</span></tt>/<tt class="code docutils literal"><span class="pre">else</span></tt>, ed un costrutto ennario
+<tt class="code docutils literal"><span class="pre">select</span></tt>/<tt class="code docutils literal"><span class="pre">case</span></tt>, simile allo <tt class="code docutils literal"><span class="pre">switch</span></tt> di C) e l&#8217;iterazione (col
+solo costrutto <tt class="code docutils literal"><span class="pre">while</span></tt> e senza i costrutti di alterazione del flusso
+<tt class="code docutils literal"><span class="pre">break</span></tt> o <tt class="code docutils literal"><span class="pre">continue</span></tt>);</li>
+<li>è possibile definire <em>funzioni</em>, ma non è previsto il passaggio di
+parametri, o la restituzione di valori: tutta la comunicazione
+avviene tramite l&#8217;uso di variabili globali;</li>
+<li>non è possibile <em>modularizzare</em> il codice (suddividendolo in moduli
+che limitino la visibilità delle variabili), è si possibile avere
+fino a cinque script diversi in esecuzione, ma la comunicazione
+tra essi avviene con una sorta di meccanismo di memoria
+condivisa molto primitivo;</li>
+</ul>
+<p>Il codice è organizzato in <strong>callback</strong>, una sorta di gestori di interruzione
+(<em>interrupt handler</em> nel senso dei sistemi operativi <a class="reference internal" href="../zbiblio.html#so" id="id1">[20]</a>), la cui esecuzione
+viene invocata dal motore in modo asincrono in corrispondenza di eventi
+esterni (come ad esempio eventi MIDI, o di interfaccia utente), o in modo
+periodico. Mancando però totalmente costrutti di gestione della concorrenza e
+non essendoci parola nella documentazione circa l&#8217;atomicità dell&#8217;accesso alle
+variabili, che ricordiamo sono solo globali <a class="footnote-reference" href="#poly" id="id2"><sup>1</sup></a>, questa organizzazione
+del codice rende impossibile avere certezze su come evitare, ad esempio,
+condizioni di corsa (<em>race conditions</em>).</p>
+<p>L&#8217;esecuzione parallela tra callback è gestita molto malamente in quanto c&#8217;è
+una sorta di mescolanza tra l&#8217;approccio cooperativo e quello <em>preemptive</em>: un
+callback può cedere il controllo (approccio cooperativo) invocando la funzione
+<tt class="code docutils literal"><span class="pre">wait</span></tt> (che ne sospende l&#8217;esecuzione per un tempo specificato), ma se non lo fa
+entro un tempo prefissato, il controllo gli viene sottratto (approccio
+preemptive) e mai più restituito! Il comportamento appena descritto avviene,
+ad esempio, in presenza di cicli con un elevato numero di iterati (dell&#8217;ordine
+delle decine di migliaia) che non contengono chiamate alla funzione <tt class="code docutils literal"><span class="pre">wait</span></tt>: in
+questo caso il motore ne interrompe l&#8217;esecuzione segnalando un errore (vedi Figura
+<a class="pageref" href="#fig-errore-label">1</a>), ma senza fornire alcun modo per gestirlo. Ecco il
+motivo per cui, abbiamo visto nel manuale, che i cicli sono pieni di chiamate
+<tt class="code docutils literal"><span class="pre">wait(1)</span></tt>, le quali non avrebbero altra spiegazione.</p>
+<div class="figure align-center" id="fig-errore-label">
+<a class="reference internal image-reference" href="../_images/errore.png"><img alt="../_images/errore.png" src="../_images/errore.png" style="width: 583.2px; height: 36.8px;" /></a>
+<p class="caption">Figura 1: messaggio d&#8217;errore derivante da ciclo con &#8220;troppi&#8221; iterati.</p>
+</div>
+<p>Detto questo, possiamo affermare che un linguaggio con le caratteristiche
+sopra descritte rende la programmazione alquanto ostica, esponendo il codice
+ad errori di programmazione molto difficili da individuare e controllare.</p>
+<p>Oltre questi difetti insiti nel linguaggio stesso, ci sono delle limitazioni
+anche nelle funzioni di gestione dell&#8217;I/O che rendono macchinoso adoperare
+dati e informazioni esterne.</p>
+<p>In ultima analisi dobbiamo dire che le limitazioni più eclatanti riguardano
+proprio la gestione dei file MIDI e questo riteniamo sia inammissibile per un
+software musicale. Esso permette di accedere ad un solo file MIDI per volta
+(esiste un solo buffer, denominato &#8220;MIDI object&#8221; dove è possibile caricare un
+solo file per volta). Inoltre non sono gestiti tutti gli eventi previsti dallo
+standard MIDI, ma soltanto gli short message; risulta quindi impossibile
+leggere dai file MIDI informazioni fondamentali quali il tempo, o il metro
+della misura.</p>
+<p>Se la gestione dei file MIDI è limitata, quella di file di altro formato (ad
+esempio testo) è del tutto assente. Si possono salvare e caricare vettori
+(secondo un formato semplice ma proprietario), ma non si possono leggere file
+di nessun altro formato standard, come ad esempio file di configurazione (come
+i file <tt class="code docutils literal"><span class="pre">.ini</span></tt> comuni in Windows o i <tt class="code docutils literal"><span class="pre">,properties</span></tt> di Java).</p>
+<p class="rubric">Note</p>
+<table class="docutils footnote" frame="void" id="poly" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>In realtà esistono variabli dette &#8220;polifoniche&#8221; che, almeno in contesti
+molto particolari come i callback relativi agli eventi nota, consentono
+una protezione dalle condizioni di corsa.</td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="strumenti.html" class="btn btn-neutral float-right" title="2.3 Strumenti di supporto">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="midi.html" class="btn btn-neutral" title="2.1 Musical Instrument Digital Interface"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

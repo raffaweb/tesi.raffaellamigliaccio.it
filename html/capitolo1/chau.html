@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.1 Chocolate Audio &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="1 Stato dell’arte ed obiettivi della tesi" href="index.html"/>
+        <link rel="next" title="1.2 Lo stato dell’arte" href="arte.html"/>
+        <link rel="prev" title="1 Stato dell’arte ed obiettivi della tesi" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo2/index.html">2 Tecnologie e strumenti software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo3/index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a> &raquo;</li>
+      
+    <li>1.1 Chocolate Audio</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="chocolate-audio">
+<h1>1.1 Chocolate Audio<a class="headerlink" href="#chocolate-audio" title="link permanente per questa intestazione">¶</a></h1>
+<div class="figure align-center" id="fig-chau-label">
+<a class="reference internal image-reference" href="../_images/chau.png"><img alt="../_images/chau.png" src="../_images/chau.png" style="width: 68.0px; height: 71.8px;" /></a>
+<p class="caption">Figura 1: il logo di Chocolate Audio.</p>
+</div>
+<p>Chocolate Audio <a class="reference internal" href="../zbiblio.html#chau" id="id1">[1]</a> è un&#8217;azienda nata nel 2003 e si occupa di sound design e
+produzione di librerie di campioni. Guidata da Simone Coen, ha lavorato
+prevalentemente nell&#8217;ambito dei servizi business to business, ovvero il
+cosiddetto &#8220;conto terzi&#8221;, collaborando con aziende del settore quali:
+<em>Native Instruments</em>, <em>Ableton</em>, <em>Steinberg</em>, <em>Cakewalk</em>, <em>Scarbee</em>, <em>Arobas</em>
+e altre.</p>
+<p>Pur avendo come impegno principale il lavoro per conto di altre aziende, dal
+2006 Chocolate Audio ha inaugurato una sua linea prodotti, prevalentemente basata su Native
+Instruments (di seguito NI) <em>Kontakt</em>, che vende direttamente al pubblico
+tramite la propria presenza online.</p>
+<p>Chocolate Audio si è occupata prevalentemente di strumenti acustici o
+elettroacustici ed è particolarmente apprezzata per le sue produzioni in
+ambito di suoni percussivi e batteristici in particolare.</p>
+<p>Nell&#8217;ottica di lavorare sempre di più nell&#8217;affermazione del marchio presso il
+pubblico di produttori, DJ e musicisti, Chocolate Audio sta sviluppando una
+serie di &#8220;motori&#8221; per strumenti basati su NI Kontakt, in particolare facenti
+capo ai suoni di natura percussiva.</p>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="arte.html" class="btn btn-neutral float-right" title="1.2 Lo stato dell’arte">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="1 Stato dell’arte ed obiettivi della tesi"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

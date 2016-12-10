@@ -1,0 +1,23 @@
+*************************************
+Progetto e sviluppo dell'applicazione
+*************************************
+
+.. figure:: /images/africa.*
+  :scale: 80%
+  :align: right
+
+In questo capitolo descriviamo l'applicazione che abbiamo sviluppato durante
+il periodo di stage. La suddivisione della narrazione in sezioni ricalca il
+flusso logico che l'informazione musicale, ossia i pattern, seguono dalla loro
+*produzione* alla rappresentazione tramite le *strutture dati* offerte dal
+linguaggio di programmazione, all'*elaborazione* che essi subiscono prima di
+essere *riprodotti* e quindi *esportati* per l'uso all'esterno del software
+qui descritto.
+
+.. toctree::
+
+   produzione
+   strutturedati
+   elaborazione
+   riproduzione
+   esportazione

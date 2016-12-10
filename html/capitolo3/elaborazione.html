@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.3 Elaborazione dei pattern &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="3 Progetto e sviluppo dell’applicazione" href="index.html"/>
+        <link rel="next" title="3.4 Riproduzione dei pattern" href="riproduzione.html"/>
+        <link rel="prev" title="3.2 Strutture dati per la rappresentazione dei pattern" href="strutturedati.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo2/index.html">2 Tecnologie e strumenti software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a> &raquo;</li>
+      
+    <li>3.3 Elaborazione dei pattern</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="elaborazione-dei-pattern">
+<h1>3.3 Elaborazione dei pattern<a class="headerlink" href="#elaborazione-dei-pattern" title="link permanente per questa intestazione">¶</a></h1>
+<p>Prima di riprodurre un pattern, potremmo voler modificare alcune sue
+caratterische; a tale scopo abbiamo deciso di mantenere all&#8217;interno dei
+vettori <tt class="code docutils literal"><span class="pre">%song</span></tt> i dati <em>originali</em>, e di introdurre una serie di vettori
+paralleli <tt class="code docutils literal"><span class="pre">%play</span></tt> in cui verrà di volta in volta copiato, o fuso, uno o più
+pattern da trasformare e riprodurre.</p>
+<div class="section" id="fusione-di-groove-e-fill-outro">
+<h2>3.3.1 Fusione di groove e fill/outro<a class="headerlink" href="#fusione-di-groove-e-fill-outro" title="link permanente per questa intestazione">¶</a></h2>
+<p>Quando si passa da un pattern a un altro di diverso tipo, è a volte necessario
+&#8220;fondere&#8221; le parti piuttosto che suonarle una in sequenza all&#8217;altra.</p>
+<p>Ad esempio, quando un batterista sta suonando un groove e vuole passare ad un
+fill, lo &#8220;incastra&#8221; nel punto giusto, senza aspettare che sia prima finito il
+groove. Stesso discorso se il passaggio avviene da groove ad outro.</p>
+<p>Facciamo un esempio per capire meglio il punto: usiamo come riferimento la
+coppia &#8220;groove - fill&#8221; e scegliamo come metro un 4/4, un groove di 16/4, cioè
+4 battute, e un fill di 6/4, cioè una battuta e mezza, come in Figura
+<a class="pageref" href="#fig-fusione1-label">1</a>.</p>
+<div class="figure align-center" id="fig-fusione1-label">
+<a class="reference internal image-reference" href="../_images/fusione1.png"><img alt="../_images/fusione1.png" src="../_images/fusione1.png" style="width: 303.0px; height: 96.0px;" /></a>
+<p class="caption">Figura 1: groove e fill da fondere, come presenti nei vettori <tt class="code docutils literal"><span class="pre">%song</span></tt>.</p>
+</div>
+<p>Il batterista, dopo aver eseguito il terzo quarto della seconda battuta
+(indicato dalla freccia) vuole inserire il fill. L&#8217;operazione di fusione può
+essere descritta come segue:</p>
+<ul class="simple">
+<li>si copiano le <tt class="code docutils literal"><span class="pre">n</span></tt> misure di groove gia interamente suonate
+(nell&#8217;esempio, <tt class="code docutils literal"><span class="pre">n</span> <span class="pre">:=</span> <span class="pre">1</span></tt>),</li>
+<li>il fill viene traslato in avanti di <tt class="code docutils literal"><span class="pre">n</span></tt> misure,</li>
+<li>al posto dei quarti vuoti del fill si copiano i corrispondenti del groove
+(nell&#8217;esempio, i primi due),</li>
+<li>si riempiono i quarti restanti (fino alla lunghezza originale del groove)
+copiando i quarti del groove (nell&#8217;esempio, gli ultimi 4);</li>
+</ul>
+<p>questa sequenza di operazioni riempie i vettori <tt class="code docutils literal"><span class="pre">%play</span></tt> come in Figura
+<a class="pageref" href="#fig-fusione2-label">2</a>.</p>
+<div class="figure align-center" id="fig-fusione2-label">
+<a class="reference internal image-reference" href="../_images/fusione2.png"><img alt="../_images/fusione2.png" src="../_images/fusione2.png" style="width: 299.5px; height: 57.0px;" /></a>
+<p class="caption">Figura 2: risultato della fusione, presente nei vettori <tt class="code docutils literal"><span class="pre">%play</span></tt>.</p>
+</div>
+<p>A questo punto il batterista procede suonando il quarto quarto della seconda
+misura (indicato dalla freccia). Osserviamo che la fusione ha riguardato anche
+i quarti precedenti a quelli già eseguiti, questo al fine di consentire
+maggiore coerenza in fase di esportazione dei dati, come sarà descritto in
+seguito.</p>
+<p>Per gli outro il discorso è lo stesso, con la differenza che al termine dei
+medesimi, la composizione sarà finita e quindi non sarà necesserio considerare
+gli eventuali quarti rimanenti del groove.</p>
+</div>
+<div class="section" id="trasformazioni">
+<h2>3.3.2 Trasformazioni<a class="headerlink" href="#trasformazioni" title="link permanente per questa intestazione">¶</a></h2>
+<p>Una volta popolati i vettori <tt class="code docutils literal"><span class="pre">%play</span></tt> con i pattern da riprodurre il software
+consente di applicare delle trasformazioni che riguardano il tempo e
+l&#8217;intensità. Queste trasformazioni alterano direttamente i valori dei vettori
+<tt class="code docutils literal"><span class="pre">%play</span></tt>; le descriviamo qui in seguito.</p>
+<div class="section" id="quantizzazione">
+<span id="sec-quantizzazione-label"></span><h3>3.3.2.1 Quantizzazione<a class="headerlink" href="#quantizzazione" title="link permanente per questa intestazione">¶</a></h3>
+<p>Spesso un ritmo che risulta essere <em>a tempo</em> e musicalmente corretto per
+l&#8217;orecchio umano, non lo è per la precisione metronomica della  macchina, ecco
+che entra in gioco la <strong>quantizzazione</strong>.</p>
+<p>Abbiamo deciso di inserire questa funzionalità nel software, piuttosto che
+attuare una quantizzazione nella fase di post-produzione, perché avendo
+utilizzato un batterista umano per registare i pattern abbiamo voluto
+preservare il più possibile il timing e il &#8220;feel&#8221; della sua esecuzione.</p>
+<p>Precisamente, quantizzare un pattern significa allineare tutti gli eventi
+(modificandone i <em>tick</em>) rispetto ad una griglia di riferimento, nel nostro
+caso la griglia corrisponde a una tra le seguenti figure musicali: ottavo,
+ottavo terzinato, sedicesimo, sedicesimo terzinato, trantaduesimo,
+trentaduesimo terzinato (queste figure sono dette <em>risoluzione di
+quantizzazione</em>).</p>
+<p>Per ogni evento MIDI consideriamo il tick <span class="math">\(t\)</span> a cui avviene e calcoliamo
+la differenza <span class="math">\(\Delta t\)</span> corrispondente allo spostamento necessario a
+riallinearlo alla griglia scelta come segue:</p>
+<div class="math">
+\[\begin{split}\Delta t =
+        \begin{cases}
+                - ( t \bmod q ) \alpha   &amp; \text{se}\quad t \bmod q &lt; q/2 \\
+                ( q - t \bmod q ) \alpha &amp; \text{altrimenti}
+        \end{cases}\end{split}\]</div>
+<p>dove <span class="math">\(0\leq\alpha\leq 1\)</span> è un parametro che descrive quanto rigorosa
+deve essere la quantizzazione: 0 corrisponde al caso in cui le note non
+verranno spostate e 1 al caso in cui verranno portate esattamente sulla
+griglia.</p>
+<p>La porzione di codice che realizza il calcolo di <span class="math">\(\Delta t\)</span> è la
+seguente:</p>
+<div class="highlight-python"><div class="highlight"><pre>$old_pos := %play_pos[ $play_idx ]
+if ( $old_pos mod $quant_resol &lt;= $quant_resol / 2 )
+  $pos_offset :=
+    - ( $old_pos mod $quant_resol )
+      * 1000 * $quantize_selector / 100000
+else
+  $pos_offset :=
+    ( $quant_resol - ( $old_pos mod $quant_resol ) )
+      * 1000 * $quantize_selector / 100000
+end if
+</pre></div>
+</div>
+<p>dove: <tt class="code docutils literal"><span class="pre">$pos_offset</span></tt> corridponde a <span class="math">\(\Delta t\)</span>, <tt class="code docutils literal"><span class="pre">$quant_resol</span></tt> a <span class="math">\(q\)</span>
+e adoperiamo lo stratagemma di moltiplicare per <tt class="code docutils literal"><span class="pre">1000</span> <span class="pre">*</span> <span class="pre">$quantize_selector</span> <span class="pre">/</span>
+<span class="pre">100000</span></tt> per approssimare il calcolo del prodotto per <span class="math">\(\alpha\)</span>,
+stratagemma reso necessario dal fatto che il linguaggio supporta solo tipi
+interi.</p>
+<p>Al fine di quantizzare soltanto la posizione delle note e non la loro durata,
+quando applichiamo tale traslazione ad un evento NOTE ON, sposteremo dello
+stesso <span class="math">\(\Delta t\)</span> anche l&#8217;evento NOTE OFF corrispondente che reperiremo
+usando il vettore <tt class="code docutils literal"><span class="pre">%play_nod</span></tt> descritto in precedenza.</p>
+<p>Come esemplificato dalla Figura <a class="pageref" href="#fig-quantize-label">3</a>, se <span class="math">\(t\)</span> è pari
+a 150, con la risoluzione pari a 240 (cioè un sedicesimo) <span class="math">\(\alpha\)</span> pari
+a 1, <span class="math">\(\Delta t\)</span> assumerà valore 90.</p>
+<div class="figure align-center" id="fig-quantize-label">
+<a class="reference internal image-reference" href="../_images/quantize.png"><img alt="../_images/quantize.png" src="../_images/quantize.png" style="width: 400.0px; height: 300.0px;" /></a>
+<p class="caption">Figura 3: spostamento <span class="math">\(\Delta t\)</span> per la <em>quantizzazione</em> in funzione di <span class="math">\(t\)</span>.</p>
+</div>
+</div>
+<div class="section" id="swing">
+<span id="sec-swing-label"></span><h3>3.3.2.2 Swing<a class="headerlink" href="#swing" title="link permanente per questa intestazione">¶</a></h3>
+<p>Ai musicisti è ben noto che suonando un tempo binario come terzinato gli si
+conferisce un gusto afro-americano, altrimenti detto <strong>swing</strong> <a class="footnote-reference" href="#id3" id="id1"><sup>1</sup></a>, che è la
+denominazione usata nei software musicali.</p>
+<p>Consideriamo più concretamente un quarto composto da quattro sedicesimi,
+possiamo ottenere lo swing spostando in avanti i sedicesimi pari di ogni
+ottavo. Se descriviamo la misura di questo spostamento in termini della
+percentuale <span class="math">\(c\)</span> di tempo all&#8217;interno dell&#8217;ottavo assegnata a ciascun
+sedicesimo si danno ad esempio i seguenti due casi:</p>
+<ul class="simple">
+<li>se <span class="math">\(c\)</span> è pari al 50% i sedicesimi restano al loro posto in quanto
+occupano ciascuno la metà di un ottavo,</li>
+<li>se aumentiamo <span class="math">\(c\)</span> al 66%, il secondo e quarto sedicesimo cadranno
+nella posizione del terzo e sesto sedicesimo terzinato,</li>
+<li>per valori diversi di <span class="math">\(c\)</span> si possono comunque ottenere effetti
+interessanti.</li>
+</ul>
+<p>In generale, considerando una griglia di riferimento corrispondente a uno tra
+i seguenti valori: trentaduesimo, sedicesimo, ottavo; è possibile  calcolare
+lo spostamento <span class="math">\(\Delta t\)</span> da applicare all&#8217;evento al tick <span class="math">\(t\)</span>
+secondo la seguente formula:</p>
+<div class="math">
+\[\begin{split}\Delta t =
+        \begin{cases}
+                \left( \frac{s}{2} -  t \bmod s \right) + s\alpha &amp; \text{se}\quad \left|t \bmod s - \frac{s}{2} \right| \leq s\alpha \\
+                0 &amp; \text{altrimenti}
+        \end{cases}\end{split}\]</div>
+<p>dove <span class="math">\(0\leq\alpha\leq 2/10\)</span> è un parametro che descrive quanto maggiore
+deve essere lo swing: 0 corrisponde al caso in cui abbiamo meno swing e 2/10
+al caso in cui abbiamo maggior swing. Il parametro <span class="math">\(\alpha\)</span> è
+determianto a partire dalla percentuale di swing <span class="math">\(c\)</span> che, come discusso
+in precedenza, assume valori in <span class="math">\([50,70]\)</span> tramite la relazione
+<span class="math">\(\alpha = ( c - 50 ) / 100\)</span>.</p>
+<p>Riportiamo anche in questo caso la porzione di codice che realizza il calcolo
+di <span class="math">\(\Delta t\)</span>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$swing_delta := ( $swing_resol *
+  ( $swing_selector - 50 ) * 1000 ) / 100000
+if ( abs( $old_pos mod $swing_resol - $swing_resol / 2 ) &lt;= $swing_delta )
+  $pos_offset :=
+    ( $swing_resol / 2 - ( $old_pos mod $swing_resol ) ) + $swing_delta
+else
+  $pos_offset := 0
+end if
+</pre></div>
+</div>
+<p>dove: <tt class="code docutils literal"><span class="pre">$pos_offset</span></tt> corridponde a <span class="math">\(\Delta t\)</span>, <tt class="code docutils literal"><span class="pre">$swing_resol</span></tt> a <span class="math">\(s\)</span>
+e calcoliamo <tt class="code docutils literal"><span class="pre">$swing_delta</span></tt> che corridponde approssimativamente a
+<span class="math">\(s\alpha\)</span> di nuovo usando lo stratagemma <tt class="code docutils literal"><span class="pre">(</span> <span class="pre">...</span>&nbsp; <span class="pre">*</span> <span class="pre">1000</span> <span class="pre">)</span> <span class="pre">/</span> <span class="pre">100000</span></tt> reso
+sempre necessario dal fatto che il linguaggio supporta solo tipi interi.</p>
+<p>Anche nel caso dello swing, modificheremo soltanto la posizione delle note e
+non la loro durata, applicando la stessa traslazione <span class="math">\(\Delta t\)</span> ad ogni
+NOTE ON e NOTE OFF corrispondente.</p>
+<p>Come esemplificato dalla figura <a class="pageref" href="#fig-swing-label">4</a>, se <span class="math">\(t\)</span> è pari a
+720, con la risoluzione pari a 480 e <span class="math">\(c\)</span> pari al 66%, ossia
+<span class="math">\(\alpha\)</span> pari a 1/6, <span class="math">\(\Delta t\)</span> è pari a 80 che infatti sposta 720
+a 800 che è la posizione del sesto sedicesimo terzinato.</p>
+<div class="figure align-center" id="fig-swing-label">
+<a class="reference internal image-reference" href="../_images/swing.png"><img alt="../_images/swing.png" src="../_images/swing.png" style="width: 400.0px; height: 300.0px;" /></a>
+<p class="caption">Figura 4: spostamento <span class="math">\(\Delta t\)</span> per lo <em>swing</em> in funzione di <span class="math">\(t\)</span>.</p>
+</div>
+</div>
+<div class="section" id="tempo">
+<span id="sec-tempo-label"></span><h3>3.3.2.3 Tempo<a class="headerlink" href="#tempo" title="link permanente per questa intestazione">¶</a></h3>
+<p>Questa trasformazione serve a modificare il tempo della traccia, dando la
+possibilità all&#8217;utente di scegliere se raddopiarlo o dimezzarlo, approssimando
+quelli che in letteratura vengono definiti “double time feel” e “half time
+feel” <a class="reference internal" href="../zbiblio.html#bible" id="id2">[16]</a>.</p>
+<p>Osserviamo che essa agisce alterando i <em>tick</em> (raddoppiandone o dimezzandone
+il valore) e non modificando il BPM della traccia.</p>
+<p>Anche in questo caso, il limite d&#8217;avere a disposizione solo tipi interi ci
+obbliga al codice poco naturale:</p>
+<div class="highlight-python"><div class="highlight"><pre>%play_pos[ $play_idx ] :=
+   (  %play_pos[ $play_idx ] * $stretch_amount  ) / 2
+</pre></div>
+</div>
+<p>dove <tt class="code docutils literal"><span class="pre">$stretch_amount</span></tt> ha valori 4, 2, o 1 invece dei più ovvi 2, 1 e 1/2.</p>
+</div>
+<div class="section" id="intensita">
+<span id="sec-intensita-label"></span><h3>3.3.2.4 Intensità<a class="headerlink" href="#intensita" title="link permanente per questa intestazione">¶</a></h3>
+<p>Può essere necessario modificare l&#8217;intensità e quindi il volume e timbro
+risultante delle note che sono suonate; questo, in un evento MIDI, corrisponde
+a modificare il parametro <em>velocity</em> che, secondo lo standard, può assumere
+valori nell&#8217;intervallo <span class="math">\([0, 127]\)</span>.</p>
+<p>Nel nostro caso, partendo da un parametro <span class="math">\(c\)</span> che assume valori
+nell&#8217;intervallo <span class="math">\([-126, 127]\)</span>, determineremo un nuovo intervallo di
+variazione per la velocity pari a <span class="math">\([v_{\min}, v_{\max}]\)</span> secondo la
+seguente formula:</p>
+<div class="math">
+\[\begin{split}v_{\min} &amp; = \max{\{ 1, c \}} \\
+v_{\max} &amp; = \min{\{ c + 127, 127 \}}\end{split}\]</div>
+<p>che è esemplificata dalla Figura <a class="pageref" href="#fig-velocity1-label">5</a>.</p>
+<div class="figure align-center" id="fig-velocity1-label">
+<a class="reference internal image-reference" href="../_images/velocity1.png"><img alt="../_images/velocity1.png" src="../_images/velocity1.png" style="width: 400.0px; height: 300.0px;" /></a>
+<p class="caption">Figura 5: grafico di <span class="math">\(v_{\min}\)</span> e <span class="math">\(v_{\max}\)</span> in funzione del controllo
+<span class="math">\(c\)</span>.</p>
+</div>
+<p>Ad esempio, per un valore di <span class="math">\(c\)</span> pari a 64, si determina il nuovo
+intervallo di variazione  <span class="math">\([64, 127]\)</span>.</p>
+<p>Osserviamo che l&#8217;effetto udibile di valori estremi di <span class="math">\(c\)</span> è
+l&#8217;appiattimento della dinamica del pezzo, con la conseguente perdita degli
+accenti.</p>
+<p>Una volta deterimanto il nuovo intervallo di variazione, la velocity di
+<span class="math">\(v\)</span> di un evento viene modificata (con una trasformazione lineare) nella
+nuova velocity <span class="math">\(v'\)</span> come:</p>
+<div class="math">
+\[v' = ( v - 1 ) \frac{ v_{\max} - v_{\min}}{ 126 } + v_{\min}\]</div>
+<p>Di nuovo, secondo l&#8217;esempio precedente, la Figura <a class="pageref" href="#fig-velocity2-label">6</a>
+riporta la trasformazione dell&#8217;intervallo <span class="math">\([0, 127]\)</span> in <span class="math">\([64,
+127]\)</span> corrispondente al valore 64 di <span class="math">\(c\)</span>:</p>
+<div class="figure align-center" id="fig-velocity2-label">
+<a class="reference internal image-reference" href="../_images/velocity2.png"><img alt="../_images/velocity2.png" src="../_images/velocity2.png" style="width: 400.0px; height: 300.0px;" /></a>
+<p class="caption">Figura 6: esempio di trasfomazione della velocità, quando <span class="math">\(c\)</span> vale
+64.</p>
+</div>
+<p class="rubric">Note</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><p class="first">il termine <em>swing</em> è molto generale e ha più significati, con esso possiamo riferirci a:</p>
+<ul class="simple">
+<li>un ritmo sincopato che è caratteristica comune della musica jazz;</li>
+<li>uno stile musicale conosciuto come &#8220;swing jazz&#8221;;</li>
+<li>una serie di balli che includono il Lindy Hop, West Coast Swing ecc..</li>
+</ul>
+<p class="last">Nel nostro caso, lo considereremo nella prima accezzione.</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="riproduzione.html" class="btn btn-neutral float-right" title="3.4 Riproduzione dei pattern">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="strutturedati.html" class="btn btn-neutral" title="3.2 Strutture dati per la rappresentazione dei pattern"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

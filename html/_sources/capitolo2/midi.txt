@@ -1,0 +1,84 @@
+Musical Instrument Digital Interface
+====================================
+
+Lo standard
+-----------
+
+Il Musical Instrument Digital Interface (MIDI) standard, nato negli anni '80,
+comprende sia una specificia hardware, che un protocollo di comunicazione per
+i dispositivi musicali elettronici, come tastiere, computer ecc.. I dati MIDI
+possono essere sia trasmessi durante le performance, che essere memorizzati
+per l'editing o playback successivo.
+
+In questo paragarafo vogliamo, pur senza pretese di completezza, esporre
+alcune caratteristiche base del MIDI :cite:`MIDI` che saranno utili
+nell'esposizione del nostro lavoro.
+
+I dati MIDI viaggiano da un dispositivo all'altro, sotto forma di **messaggi
+MIDI**. I differenti tipi di messaggi MIDI sono distinti dal primo byte del
+messaggio stesso noto come **byte di stato**, il quale definisce la tipologia
+di messaggio, seguito dai cosiddetti **byte di dati** che contengono i dati
+veri e propri. I messaggi MIDI più comuni sono composti dal byte di stato più
+due byte di dati e sono detti **short message** e sono utilizzati per
+trasmettere informazioni sulle note da riprodurre; lo standard prevede messaggi
+più lunghi, adoperati usualmente per veicolare informazioni accessorie come il
+metro della misura, il nome della composizione, etc..
+
+
+Short message
+-------------
+
+Descriviamo qui gli short message MIDI che sono pertinenti al nostro
+lavoro, specificando per brevità solo il significato dei byte di dati:
+
+NOTE_ON
+	- primo byte: **pitch** (altezza) della nota da suonare,
+	- secondo byte: **velocity** (intensità) della nota da suonare.
+
+NOTE_OFF
+	- primo byte: pitch della nota da silenziare,
+	- secondo byte: velocity della nota da silenziare, usualmente 0.
+
+Osserviamo che un NOTE_ON con velocity pari a 0 è interpretato come un NOTE_OFF.
+
+CONTROL_CHANGE
+	- primo byte: **numero** del controllo,
+	- secondo byte: **valore** del controllo.
+
+I messaggi di CONTROL_CHANGE servono, tipicamente, a trasmettere informazioni
+di controllo, come nel nostro caso, il grado di apertura o chiusura del *charleston*.
+
+
+Tick, risoluzione e BPM
+-----------------------
+
+Una caratteristica centrale del protoccollo MIDI è che i dati sono trasmessi
+tra i dispositivi in tempo reale, in un "flusso". Essi non contengono di per
+sé informazioni di temporizzazione, ogni messaggio viene elaborato al suo
+arrivo, dunque si presume esso giunga nel momento giusto.
+
+I messaggi MIDI possono essere memorizzati da un sequencer (usualmente è
+un software in esecuzione su un computer) che li immagazzina come **eventi
+MIDI**, ossia messaggi MIDI con in aggiunta un'informazione di
+temporizzazione, che specifica *quando* è stato originato il messaggio,
+e per cui viene utilizzata una unità di misura denominata **tick**.
+
+Osserviamo che il tick non è una misura assoluta di tempo (espressa in
+frazioni di secondo), ma una misura relativa alla **risoluzione** che è
+appunto il numero di tick contenuti in un quarto. Per calcolare la durata
+:math:`t` in secondi di un tick, è necessario pertanto conoscere i *Beat Per
+Minute* (**BPM**), ossia il numero di quarti per minuto. Se la risoluzione vale :math:`R`, allora:
+
+.. math::
+
+	t = \frac{ 60 }{ R \times BPM } s
+
+
+
+
+
+
+
+
+
+

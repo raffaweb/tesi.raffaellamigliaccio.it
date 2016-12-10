@@ -1,0 +1,57 @@
+Strutture dati per la rappresentazione dei pattern
+==================================================
+
+Dopo una serie di sperimentazioni e prendendo in considerazione i limiti del
+linguaggio, abbiamo convenuto che il modo più consono per la rappresentazione
+di dati strutturati come gli eventi MIDI è l'utilizzo di vettori paralleli,
+ossia di una serie di vettori (uno per ciascun tipo di dato), in cui le
+informazioni relative al medesimo evento sono memorizzate allo stesso indice.
+
+La prima operazione che effettuiamo è quindi il caricamento del file MIDI
+multitraccia all'interno di Kontakt; questo avviene popolando una serie di
+array paralleli il cui nome inzia per `%song`. Oltre le usuali informazioni in
+merito agli eventi MIDI, avremo bisogno in seguito anche di un altro dato e
+cioè, per ciascun NOTE ON, la posizione del suo NOTE OFF corrispondente. Nel
+dettaglio, per l'`i`-esimo evento i vettori conterranno:
+
+- `%song_pos[ i ]`: la posizione in tick,
+
+- `%song_cmd[ i ]`: il comando,
+
+- `%song_byte_one[ i ]`: il primo byte dello *short message*,
+
+- `%song_byte_two[ i ]`: il secondo byte dello *short message*,
+
+- `%song_nod[ i ]`: se l'`i`-esimo evento è un NOTE ON, il
+  valore `j - i`, dove `j` è l'indice del NOTE OFF corrispondente,
+  altrimenti -1.
+
+Poichè intendiamo caricare consecutivamente gli eventi di tutti i pattern,
+abbiamo bisogno di un modo per tener traccia della posizione iniziale di
+ciascun pattern; a tale scopo usiamo l'array `%patterns_offsets` tale per cui
+`%patterns_offsets[ p ]` è l'indice nei vettori `%song` del `p`-esimo pattern.
+Inoltre, per tener traccia di dove sono collocati i vari tipi, adopereremo
+l'array `%kinds_offsets` tale per cui `%kinds_offsets[ k ]` è l'indice in
+`%patterns_offsets` del primo pattern del tipo `k`-esimo (i tipi sono numerati
+da 0 e nel seguente ordine: intro, outro, groove e fill).
+
+Tali vettori e le loro relazioni sono esemplificate dalla figura
+:num:`fig-song-label`
+
+.. _fig-song-label:
+
+.. figure:: /images/song.*
+  :scale: 90%
+  :align: center
+
+  rappresentazione visuale dei vettori che contengono la song.
+
+Ad esempio gli eventi relativi al sesto fill occuperanno le posizioni dei
+vettori `%song` che vanno dall'indice `inizio` a `fine` (compresi), calcolati
+come segue::
+
+	k := 3 { 3 corrisponde al tipo fill }
+	p := %kinds_offsets[ k ] + 5 { il sesto fill ha indice 5 }
+	inizio := %patterns_offsets[ p ]
+	fine := %patterns_offsets[ p + 1 ] - 1
+

@@ -1,0 +1,141 @@
+Lo stato dell'arte
+==================
+
+Prima di iniziare la progettazione e lo sviluppo del prodotto, abbiamo svolto
+una indagine su quello che la concorrenza offre rispetto alle funzionalità
+che ci eravamo proposti di implementare, partendo dal presupposto che volevamo
+progettare del software per il prodotto NI Kontakt.
+
+Ecco tre tra i migliori prodotti attualmente sul mercato.
+
+.. _sec-logic-label:
+
+Apple Logic Pro X Drummer
+-------------------------
+
+*Drummer* di Apple è inserito all'interno di *Logic Pro X* :cite:`Logic` (e di
+*GarageBand* :cite:`GB`) e in quanto tale non ha la struttura di un plugin, ma
+è parte integrantedell'applicazione.
+
+La gestione dei pattern è molto interattiva, come risulta dalla Figura
+:num:`fig-logic-label`.
+
+.. _fig-logic-label:
+
+.. figure:: /images/logic.*
+  :scale: 90%
+  :align: center
+
+  Logic Pro X, di Apple.
+
+Tramite tale interfaccia si può selezionare:
+
+- il genere musicale;
+
+- il batterista, possibilità che costituisce una sorta di
+  personificazione della tecnologia in ambito musicale;
+
+- la "song" intesa come macro-struttura di riferimento;
+
+- il pattern, secondo una logica bidimensionale e continua (rappresentata
+  dall'elemento di interfaccia dato dal punto giallo nel riquadro nero) agendo
+  su un asse di complessità (da "simple" a "complex") e su uno di intensità (da "soft" a "loud");
+
+- si possono accendere e spegnere selettivamente i singoli pezzi di batteria,
+  o forzare delle variazioni;
+
+- il checkbox "follow" offre la possibilità di imporre a Drummer di "seguire"
+  il ritmo di un'altra traccia (basso, drum, loop, etc.) per quanto riguarda
+  le figurazioni di kick e snare, questa caratteristica è resa possibile
+  dal fatto che Drummer è integrato in Logic.
+
+
+Toontrack EZDrummer
+-------------------
+
+EZDrummer :cite:`EZDrummer` è un prodotto che è sul mercato da diversi anni ed è
+stato aggiornato alla versione 2 da diversi mesi. Si tratta di un "instrument
+plugin" dedicato; in quanto tale non ha di per sé tutte le limitazioni imposte
+da Kontakt e dal motore di scripting.
+
+La sezione per la gestione dei Pattern MIDI è strutturata in modo simile a un
+sequencer MIDI di una *Digital Audio Wordkstation* (DAW). Dal browser della
+libreria di pattern (parte in alto nella Figura :num:`fig-ezdrummer-label`), si
+possono trascinare nell'apposita zona i diversi pattern e costruire così la
+propria canzone.
+
+.. _fig-ezdrummer-label:
+
+.. figure:: /images/ezdrummer.*
+  :scale: 70%
+  :align: center
+
+  EZDrummer 2, di Toontrack.
+
+Esistono due funzioni interessanti in EZDrummer relative alla gestione pattern:
+
+- la possibilità di suonare un ritmo su un pulsante "tap" e fare in modo che
+  il motore di ricerca restituisca i Pattern che più somigliano a ciò che
+  abbiamo suonato,
+
+- la presenza di un "song creator" ovvero di un algoritmo che dati i pattern
+  caricati, li concatena in modo appropriato rispetto agli stilemi classici
+  della forma canzone.
+
+Rispetto agli obiettivi che ci siamo posti per questo elaborato, EZDrummer si
+presenta comunque in modo molto rigido in quanto possiede una collezione non
+molto coerente di Pattern e soprattutto la procedura di costruzione della
+composizione è molto strutturata e non consente interazioni vere e proprie in
+tempo reale, obiettivo che invece abbiamo ritenuto importante per il nostro
+lavoro in quanto, oltre a consentire maggiore espressività al musicista,
+costituisce un importante lato "giocoso" del fare musica.
+
+
+NI Studio Drummer
+-----------------
+
+Ci soffermeremo di più su *Studio Drummer* :cite:`SD` che è una libreria per NI
+Kontakt, lo stesso prodotto per il quale abbiamo scelto di sviluppare la nostra
+soluzione.
+
+Native Instruments :cite:`NI` è leader mondiale di hardware e software per la
+produzione di musica basata sull'uso del computer. L'azienda si pone
+l'obiettivo di immettere nel mercato prodotti innovativi e completi in grado
+di soddisfare ogni tipo di esigenza.
+
+Kontakt (nella versione 5) :cite:`K5` è uno dei più importanti campionatori e
+player attualmente in circolazione. Dispone di una libreria
+con più di mille strumenti e circa 43 GB di campioni. Inoltre, tale prodotto
+mette a disposizione un motore di scripting, denominato *Kontakt Script
+Processor* (KSP), che consente di eseguire script in un linguaggio
+proprietario (deniminato *Kontakt Scripting Language*), i quali permettono di
+personalizzare in modo versatile ed evoluto il comportamento degli strumenti
+riprodotti da Kontakt.
+
+La libreria esistente che più si avvicina all'idea che abbiamo voluto
+implentare è *Studio Drummer*. Questo consiste in una sorta di batterista virtuale che,
+entro certi limiti, può aiutare il produttore/compositore nella fase di
+pre-produzione o produzione di brani musicali.
+
+Di tale libreria, qui descriviamo solo la sezione che più ci interessa: quella
+della gestione dei ritmi di batteria.
+
+Come si vede nella figura :num:`fig-studiodrummer-label`, *Studio Drummer* ha
+molti ritmi, circa tremila, divisi per genere (funk, rock, jazz, pop, ecc.).
+Dispone di due funzioni principali per la manipolazione degli stessi:
+
+	Quantizzazione
+		permette di aggiustare le "precisione" del ritmo secondo una griglia
+		di figure ritmiche (ottavi, sedicesimi, trentaduesimi).
+
+  Swing
+    permettere di aggiungere dello swing al ritmo, dando un "gusto jazz"
+    anche ad un ritmo rock.
+
+.. _fig-studiodrummer-label:
+
+.. figure:: /images/studiodrummer.jpg
+  :scale: 80%
+  :align: center
+
+  la sezione di gestione dei ritmi di *Studio Drummer*

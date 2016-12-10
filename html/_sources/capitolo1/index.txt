@@ -1,0 +1,20 @@
+***************************************
+Stato dell'arte ed obiettivi della tesi
+***************************************
+
+.. figure:: /images/rosanna.*
+  :scale: 80%
+  :align: right
+
+In questo capitolo, dopo aver descritto brevemente l'azienda presso cui si è
+svolto lo stage, presentiamo alcuni prodotti che costituiscono lo stato
+dell'arte del settore e hanno fornito lo spunto iniziale per il nostro lavoro.
+La sezione finale di questo capitolo descrive quali sono stati gli obiettivi
+che ci siamo preposti.
+
+.. toctree::
+   :maxdepth: 2
+
+   chau
+   arte
+   obiettivi

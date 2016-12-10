@@ -1,0 +1,23 @@
+*******************************
+Tecnologie e strumenti software
+*******************************
+
+.. figure:: /images/funky_drummer.*
+  :scale: 80%
+  :align: right
+
+Questo capitolo richiama le tecnologie principali e gli strumenti software più
+importanti che abbiamo adoperato per conseguire gli obiettivi che ci siamo
+dati. In particolare: nella prima Sezione esponiamo gli elementi dello
+standard MIDI che saranno utili a comprendere la trattazione dei dati
+presentata nel seguito, nella seconda Sezione descriviamo NI Kontakt ed il suo
+linguaggio di programmazione, mettendone in luce alcuni limiti; in fine,
+nell'ultima Sezione descriviamo alcuni strumenti di supporto allo sviluppo e
+le motivazioni che ci hanno indotti a sceglierli.
+
+.. toctree::
+   :maxdepth: 2
+
+   midi
+   kontakt
+   strumenti

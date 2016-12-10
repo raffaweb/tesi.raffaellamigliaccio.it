@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.3 Strumenti di supporto &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="2 Tecnologie e strumenti software" href="index.html"/>
+        <link rel="next" title="3 Progetto e sviluppo dell’applicazione" href="../capitolo3/index.html"/>
+        <link rel="prev" title="2.2 Kontakt Script Processor" href="kontakt.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2 Tecnologie e strumenti software</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo3/index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">2 Tecnologie e strumenti software</a> &raquo;</li>
+      
+    <li>2.3 Strumenti di supporto</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="strumenti-di-supporto">
+<h1>2.3 Strumenti di supporto<a class="headerlink" href="#strumenti-di-supporto" title="link permanente per questa intestazione">¶</a></h1>
+<div class="section" id="il-preprocessore-c">
+<h2>2.3.1 Il preprocessore C<a class="headerlink" href="#il-preprocessore-c" title="link permanente per questa intestazione">¶</a></h2>
+<p>Il preprocessore C viene utilizzato automaticamente dal compilatore C per
+trasformare il codice sorgente prima di passare alla compilazione <a class="reference internal" href="../zbiblio.html#gcc" id="id1">[24]</a>. È
+anche detto macro processore perché consente di scrivere delle macro che sono
+delle &#8220;abbreviazioni&#8221; per porzioni di codice più lunghe.</p>
+<p>Ad esempio, le seguenti righe di codice C:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#define GREET &quot;ciao&quot;</span>
+<span class="cp">#define PRINTLN( X ) printf( &quot;%s\n&quot;, X )</span>
+
+<span class="n">PRINTLN</span><span class="p">(</span> <span class="n">GREET</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>vengono tradotte dal preprocessore nel codice:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">printf</span><span class="p">(</span> <span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;ciao&quot;</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Nonostante il preprocessore viene utilizzato solitamente con il C, è possibile
+con qualche accortezza usarlo anche con il Kontakt Scripting Language.</p>
+<p>Le caratteristiche del preprocessore che utilizzeremo sono:</p>
+<dl class="docutils">
+<dt>Inclusione di file</dt>
+<dd>Abbiamo suddiviso il codice in vari file secondo le
+funzionilità logiche che dovevamo implementare e quindi usato la direttiva
+<tt class="code docutils literal"><span class="pre">#include</span></tt> per ottenere da tali file lo script complessivo.</dd>
+<dt>Compilazione condizionale</dt>
+<dd>Siccome le dichiarazioni di variabile possono comparire solo nel callback
+<tt class="code docutils literal"><span class="pre">init</span></tt> e noi abbiamo diviso il codice in più file, è necessario all&#8217;atto di
+compilazione raccoglierle tutte insieme (inserendole nell&#8217;<tt class="code docutils literal"><span class="pre">init</span></tt>). Per fare
+questo utilizziamo le direttive di compilazione condizionale <tt class="code docutils literal"><span class="pre">#ifdef</span></tt>,
+<tt class="code docutils literal"><span class="pre">#else</span></tt> e <tt class="code docutils literal"><span class="pre">#endif</span></tt> per specificare quale porzione di codice debba comparire
+all&#8217;interno del callback <tt class="code docutils literal"><span class="pre">init</span></tt>.</dd>
+<dt>Commenti</dt>
+<dd>A causa di alcune incompatibilità, per poter introdurre testo senza vincoli
+nei commenti degli script li abbiamo inclusi in commenti stile C (racchiusi
+cioè tra <tt class="code docutils literal"><span class="pre">/*</span></tt> e <tt class="code docutils literal"><span class="pre">*/</span></tt>).</dd>
+<dt>Macro di tipo &#8220;oggetto&#8221;</dt>
+<dd>Con questa definizione intendiamo delle macro, definite tramite la direttiva
+<tt class="code docutils literal"><span class="pre">#define</span></tt>, usate come abbreviazioni di costanti. Ad esempio: il tipo di parte
+correntemente in esecuzione è un numero intero, ma nel codice usiamo le macro
+<tt class="code docutils literal"><span class="pre">INTRO</span></tt>, <tt class="code docutils literal"><span class="pre">GROOVE</span></tt>, <tt class="code docutils literal"><span class="pre">FILL</span></tt> e <tt class="code docutils literal"><span class="pre">OUTRO</span></tt> (invece dei valori interi cui
+corrispondono) per aumentare la leggibilità del codice. Per aggirare le
+differenze tra C e KSP in merito al preprocessore, definiamo una macro che
+vale <tt class="code docutils literal"><span class="pre">#</span></tt>, questo carattere in C è &#8220;riservato&#8221; al preprocessore (non può essere
+dunque usato nella definizione delle macro) ma in KSP esso rappresenta
+l&#8217;operatore logico <tt class="code docutils literal"><span class="pre">diverso</span></tt>.</dd>
+<dt>Macro di tipo &#8220;funzione&#8221;</dt>
+<dd>Con questa definizione intendiamo delle macro, definite tramite la direttiva
+<tt class="code docutils literal"><span class="pre">#define</span></tt>, usate come &#8220;approssimazione&#8221; di <tt class="code docutils literal"><span class="pre">funzioni</span> <span class="pre">con</span> <span class="pre">parametri</span></tt> (che sono
+assenti in KSP). Si tratta anche in questo caso di una soluzione sintattica
+che ci aiuta moltissimo a migliorare la leggibilità e stesura del codice. Ad
+esempio: usiamo una serie di queste macro per definire e disporre gli elementi
+di interfaccia grafica (operazione che richiede un numero elevato e ripetitivo
+di chiamate a funzioni KSP).</dd>
+<dt>Fusione delle linee</dt>
+<dd>Il preprocessore consente per ragioni di leggibilità di spezzare le linee di
+codice nel testo sorgente, provvedendo a concatenarle in un unica linea
+prima di procedere alla compilazione vera e propria; questo per il C va
+bene, ma purtroppo non per KSP, dove invece ogni linea può contenere al più
+una singola istruzione. Per questa ragione useremo uno stratagemma (basato
+su una ulteriore sostituzione ad opera di un tool diverso dal preprocessore)
+che consenta da un lato di dividere le macro più complesse su più linee, ma
+dall&#8217;altro di ripristinare la divisione delle medesime in linee (dopo la
+fusione effettuata dal preprocessore).</dd>
+</dl>
+<p>Infine possiamo dire che nonostante il preprocessore C sia uno strumento molto
+datato e da noi utilizzato fuori del suo ambito di utilizzo, ci ha consentito
+di ottenere enormi benefici nella stesura del codice, permettendoci di
+modularizzarlo sia suddividendolo in file che utilizzando le macro e di
+aumentarne di gran lunga la leggibilità.</p>
+<p>Nonostante sul mercato ci siano strumenti con funzionalità analoghe e, se
+vogliamo, più specifiche per KSP, abbiamo scelto di utilizzare il
+preprocessore per la sua stabilità e diffusione (esso è infatti uno strumento
+correntemente manutenuto e disponibile, con funzionalità sostanzialmente
+invariate da moltissimi anni), inoltre è uno strumento ben noto a chiunque
+abbia programmato in C.</p>
+</div>
+<div class="section" id="make">
+<h2>2.3.2 Make<a class="headerlink" href="#make" title="link permanente per questa intestazione">¶</a></h2>
+<p>Lo strumento di costruzione <tt class="code docutils literal"><span class="pre">make</span></tt> è un software in grado di effettuare in
+modo automatico i passi di un processo di compilazione che devono essere
+eseguiti.</p>
+<p>Nel nostro caso dobbiamo infatti applicare una serie di passi ai file sorgente
+in cui abbiamo suddiviso il codice al fine di ottenere lo script finale. Nello
+specifico dobbiamo invocare il preprocessore e lo strumento che abbiamo usato
+per spezzare su più linee quelle fuse dal preprocessore.</p>
+<p>Le ragioni per cui abbiamo deciso di utilizzare questo tool sono simili a
+quelle per cui utilizziamo il preprocessore: anche in questo caso si tratta di
+uno strumento estremamente diffuso, stabile e ben noto.</p>
+</div>
+<div class="section" id="java">
+<h2>2.3.3 Java<a class="headerlink" href="#java" title="link permanente per questa intestazione">¶</a></h2>
+<p>Java <a class="reference internal" href="../zbiblio.html#java" id="id2">[14]</a> è un linguaggio orientato agli oggetti, originariamente rilasciato
+da Sun nel 1995, ed è ad oggi uno dei linguaggi più diffusi, in particolare nel
+mondo delle applicazioni web.</p>
+<p>Tra le caratteristiche principali di questo linguaggio ci sono: la sua elevata
+portabilità (<tt class="code docutils literal"><span class="pre">Java</span></tt> viene eseguito da un interprete, denominato <tt class="code docutils literal"><span class="pre">Java</span> <span class="pre">Virtual</span>
+<span class="pre">Machine</span></tt>, il quale è disponibile sostanzialmente per tutti i sistemi
+operativi), il supporto nativo per la concorrenza ed il multithreading, la
+gestione automatica della memoria dinamica e una ricchissima dotazione di API.</p>
+<p>In particolare, nell&#8217;ambito della tesi, abbiamo scelto di utilizzare Java
+proprio per il supporto offerto dalle sue API per la gestione del MIDI. Il
+pacchetto <tt class="code docutils literal"><span class="pre">javax.sound.midi</span></tt> <a class="reference internal" href="../zbiblio.html#javaxsoundmidi" id="id3">[13]</a> consente di leggere e scrivere
+file multitraccia in formato MIDI standard e di analizzarne e modificarne il
+contenuto con estrema facilità.</p>
+</div>
+<div class="section" id="editor">
+<h2>2.3.4 Editor<a class="headerlink" href="#editor" title="link permanente per questa intestazione">¶</a></h2>
+<p>Il <em>KScript Editor</em> <a class="reference internal" href="../zbiblio.html#kscripteditor" id="id4">[5]</a>, sviluppato da Nils Liberg, è uno degli
+editor più utilizzati fra i programmatori che usano il <em>Kontakt Scripting
+Language</em>. Oltre le usuali funzionalità di colorazione della sintassi e
+navigazione del codice, esso offre la possibilità di ampliare la sintassi
+originale del linguaggio offrendo costrutti più avanzati come ad esempio i
+cicli for, o un limitato supporto delle funzioni con parametri.</p>
+<p>Dopo una prima analisi, abbiamo però deciso di non utilizzare tale editor.
+Principalmente perchè non volevamo legare il nostro codice ad uno strumento
+del quale non avessimo precise garanzie di stabilità e supporto.
+Secondariamente abbiamo preferito usare strumenti più <em>general purpose</em>,
+specie negli editor, dove non abbiamo trovato conveniente utilizzare un editor
+specifico per il solo <em>Kontakt Scripting Language</em>.</p>
+<p>La nostra scelta si è orientata su <em>Sublime Text</em> <a class="reference internal" href="../zbiblio.html#sublime" id="id5">[11]</a>, un editor molto
+diffuso per programmatori, che supporta un gran numero di linguaggi di
+programmazione, anche grazie alla disponibilità di un vasto numero di plugin,
+uno dei quali <a class="reference internal" href="../zbiblio.html#sublimeksp" id="id6">[4]</a> specificatamente sviluppato, sempre da
+Nils Liberg, per KSP.</p>
+<p>Rispetto alle estensioni del linguaggio offerte da <em>KScript Editor</em> abbiamo
+preferito, come discusso nelle sezioni precedenti, l&#8217;uso del preprocessore C,
+in quanto decisamente più diffuso e mantenuto.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../capitolo3/index.html" class="btn btn-neutral float-right" title="3 Progetto e sviluppo dell’applicazione">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="kontakt.html" class="btn btn-neutral" title="2.2 Kontakt Script Processor"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

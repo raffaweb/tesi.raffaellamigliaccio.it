@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1 Produzione dei pattern &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="3 Progetto e sviluppo dell’applicazione" href="index.html"/>
+        <link rel="next" title="3.2 Strutture dati per la rappresentazione dei pattern" href="strutturedati.html"/>
+        <link rel="prev" title="3 Progetto e sviluppo dell’applicazione" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo2/index.html">2 Tecnologie e strumenti software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a> &raquo;</li>
+      
+    <li>3.1 Produzione dei pattern</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="produzione-dei-pattern">
+<span id="sec-rec-label"></span><h1>3.1 Produzione dei pattern<a class="headerlink" href="#produzione-dei-pattern" title="link permanente per questa intestazione">¶</a></h1>
+<p>Come discusso nella Sezione <a class="reference internal" href="../capitolo1/obiettivi.html#sec-classificazione-label">1.3.1</a>, abbiamo
+l&#8217;esigenza di registrare diversi pattern per ciascun tipo al fine di
+raccogliere il materiale che costituisce la song. Questo processo è descritto
+nelle due Sezioni seguenti.</p>
+<p>Nella produzione dei pattern è determinante una classificazione dei generi
+musicali che sia riconoscibile in modo naturale dall’utente <a class="reference internal" href="../zbiblio.html#bible" id="id1">[16]</a>. Per
+questa ragione, prima di affrontare la fase di registrazione, è molto
+importante fare un&#8217;analisi che riguardi l&#8217;obiettivo della produzione e il
+range di diversità che questa dovrà coprire nel prodotto finito, limitando il
+numero di generi, sottogeneri, tempi, BPM a una selezione basata sul gusto, le
+richieste di mercato e la moda del momento.</p>
+<div class="section" id="registrazione">
+<h2>3.1.1 Registrazione<a class="headerlink" href="#registrazione" title="link permanente per questa intestazione">¶</a></h2>
+<p>I pattern possono essere generati in diversi modi:</p>
+<ul class="simple">
+<li>usando un editor all&#8217;interno di una DAW;</li>
+<li>tramite programmazione di &#8220;basso livello&#8221;;</li>
+<li>tramite esecuzione con tastiera MIDI;</li>
+<li>tramite esecuzione con pad MIDI specifici per batteristi
+(detti <em>e-drums</em>).</li>
+</ul>
+<p>In letteratura <a class="reference internal" href="../zbiblio.html#aes11" id="id2">[23]</a> <a class="reference internal" href="../zbiblio.html#aes12" id="id3">[22]</a>, troviamo studi che
+consentono di aiutarci nella creazione di algoritmi efficaci
+nell’umanizzazione di pattern elaborati al computer.</p>
+<p>Visto che uno degli obiettivi principali del lavoro è l&#8217;autenticità del
+materiale prodotto, abbiamo scelto l&#8217;ultima opzione, chiamando un batterista
+a eseguire i pattern su un kit e-drums.</p>
+<p>I kit tipicamente utilizzati (per diffusione e per qualità fisica dei pad)
+sono quelli prodotti da Roland <a class="reference internal" href="../zbiblio.html#roland" id="id4">[9]</a>: i modelli attualmente di punta sono
+la batteria TD15 e TD30 <a class="reference internal" href="../zbiblio.html#td30" id="id5">[12]</a>, riprodotta nella Figura
+<a class="pageref" href="#fig-roland-label">1</a>.</p>
+<div class="figure align-center" id="fig-roland-label">
+<a class="reference internal image-reference" href="../_images/roland.jpg"><img alt="../_images/roland.jpg" src="../_images/roland.jpg" style="width: 922.2px; height: 630.0px;" /></a>
+<p class="caption">Figura 1: Roland TD-30KV</p>
+</div>
+<p>Questi kit consentono un controllo fine delle caratteristiche esecutive,
+un&#8217;ottima resa dinamica e in particolare il charleston ha un controllo
+continuo e con interazione uomo-macchina molto simile a quella di un strumento
+reale <a class="reference internal" href="../zbiblio.html#aes9" id="id6">[25]</a>.</p>
+<p>La registrazione avviene in modo molto simile a qualsiasi altra produzione,
+chiedendo al batterista di suonare in maniera consecutiva i diversi pattern
+che comporranno la song, sfruttando a volte anche l&#8217;improvvisazione.</p>
+<p>Un altro fattore che generalmente contribuisce alla qualità del risultato è
+far eseguire i pattern usando gli stessi suoni che poi verranno utilizzati
+all&#8217;interno del software prodotto, in quanto ciò consente al batterista e al
+produttore di avere una percezione più fedele del risultato finale.</p>
+<p>Si è scelta questa tecnica perché garantisce risultati più espressivi da parte
+del musicista coinvolto, anche se comporta un maggiore dispendio di
+tempo in fase di post-produzione.</p>
+</div>
+<div class="section" id="post-produzione">
+<h2>3.1.2 Post-produzione<a class="headerlink" href="#post-produzione" title="link permanente per questa intestazione">¶</a></h2>
+<p>Quando, per la produzione di musica, si utilizza il computer e lo standard
+MIDI <a class="reference internal" href="../zbiblio.html#midiseq" id="id7">[17]</a>, all&#8217;esecuzione del musicista spesso segue una fase del
+processo creativo denominata <strong>post-produzione</strong> tramite la quale si ottimizza
+la performance del musicista utilizzando strumenti in grado di manipolare i
+dati nel formato MIDI, cosa che sarebbe molto complesso fare se si fosse
+lavorato in ambito puramente audio.</p>
+<p>Le modifiche tipiche includono: la trasposizione in semitoni, il ritardo o anticipo
+temporale e la variazione di altre informazioni MIDI quali la velocity.</p>
+<p>In post-produzione, il lavoro si suddivide principalmente in:</p>
+<ul class="simple">
+<li>scelta dei pattern (tra quelli registrati);</li>
+<li>eventuale ri-creazione di pattern a partire da frammenti di esecuzioni
+diverse (qualora il batterista abbia improvvisato, o se dovesse mancare del
+materiale);</li>
+<li>filtraggio di eventi MIDI generati dal kit e-drums (per Roland tipicamente
+si parla di messaggi relativi alla posizione di impatto della bacchetta sul
+rullante, che costituiscono informazioni che noi non intendiamo usare nel
+nostro lavoro);</li>
+<li>trasformazione degli eventi MIDI: mappatura delle note MIDI secondo quanto
+richiesto dal plugin di destinazione <a class="footnote-reference" href="#map" id="id8"><sup>1</sup></a>, estensione del range di
+alcuni eventi <a class="footnote-reference" href="#ext" id="id9"><sup>2</sup></a>;</li>
+<li>correzione musicale mediante trasformazione: si può, a seconda dei casi,
+applicare una pre-quantizzazione a pattern interi o loro parti per renderli
+più fluidi (è importante che passando da un pattern all&#8217;altro il &#8220;feel&#8221;  umano
+rimanga intatto e costante).</li>
+</ul>
+</div>
+<div class="section" id="formato-dei-file">
+<h2>3.1.3 Formato dei file<a class="headerlink" href="#formato-dei-file" title="link permanente per questa intestazione">¶</a></h2>
+<p>Al termine della post-produzione vengono prodotte, per ciascun song:</p>
+<ul class="simple">
+<li>un file multitraccia MIDI in cui ciascuna traccia corrisponde a un pattern;</li>
+<li>un file di testo contenente: il metro, il BPM e il numero di pattern per
+tipo.</li>
+</ul>
+<p>Dopo aver raccolto il materiale descritto nella Sezione precedente abbiamo
+dovuto individuare un formato adatto all&#8217;elaborazione successiva che, per
+ciascuna song, oltre ai veri e propri eventi MIDI, ci consentisse di memorizzare:</p>
+<ul class="simple">
+<li>il numero e tipo dei vari pattern;</li>
+<li>il metro della misura e il BPM.</li>
+</ul>
+<p>È fuori discussione che tali informazioni non possano essere memorizzate nello
+script stesso. Questo costringerebbe infatti a modificare il codice ogni qual
+volta vengano modificati i file MIDI su cui opera, legando il codice sorgente
+dello script al suo input in modo non accettabile.</p>
+<p>Date le limitazioni di KSP che non consentono di leggere agevolmente file di
+configurazione (testuali, o di altro formato) e di manipolare più di un file
+MIDI alla volta, abbiamo deciso di rappresentare le suddette informazioni in
+un unico file MIDI multitraccia.</p>
+<p>Poiché, inoltre KSP consente di leggere solo short message abbiamo dovuto
+usare una serie di stratagemmi per rappresentare tramite essi le informazioni
+a noi necessarie.</p>
+<p>Riguardo alla necessità di avere più pattern per tipo, abbiamo investigato
+diverse soluzioni possibili. Alcune erano molto pratiche dal punto di vista
+della stesura del codice, ma del tutto impratiche nella fase di
+postproduzione. La soluzione finale a cui siamo arrivati, che costituisce un
+ragionevole compromesso è la seguente.</p>
+<p>Ogni song è memorizzata in un singolo file multitraccia in cui ogni traccia
+rappresenta un pattern di uno specifico tipo. Per dividere fra di loro i vari
+tipi (intro, groove, fill, outro), non potendo far uso di alcuna meta
+informazione, abbiamo usato una traccia ad hoc, da noi denominata <strong>empty
+track</strong> la quale è posizionata alla fine di ogni gruppo di tracce di un
+determinato tipo e funge da separatore.</p>
+<p>La empty track è costituita dai seguenti eventi MIDI (qui descritti tramite
+il codice Java necessario a generarli):</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">new</span> <span class="nf">ShortMessage</span><span class="o">(</span> <span class="n">NOTE_ON</span><span class="o">,</span> <span class="mi">127</span><span class="o">,</span> <span class="mi">127</span> <span class="o">);</span>
+<span class="k">new</span> <span class="nf">ShortMessage</span><span class="o">(</span> <span class="n">NOTE_OFF</span><span class="o">,</span> <span class="mi">127</span><span class="o">,</span> <span class="mi">0</span> <span class="o">);</span>
+</pre></div>
+</div>
+<p>Riguardo al metro della misura, necessario per l&#8217;elaborazione successiva, lo
+standar MIDI prevede che questo e altri dati come il BPM, il nome della
+traccia…, siano memorizzati sotto forma di meta eventi in quanto non sono fondamentali
+per il MIDI in se stesso.</p>
+<p>Non potendo, di nuovo per via dei limiti di KSP, usare la codifica standard
+MIDI, abbiamo deciso di rappresentare tali informazioni con short message
+inseriti in una traccia apposita da noi chiamata <strong>meta track</strong> che abbiamo
+posizionato come prima traccia del file.</p>
+<p>La meta track presenta i seguenti eventi MIDI (di nuovo, descritti tramite
+il codice Java necessario a generarli):</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">new</span> <span class="nf">ShortMessage</span><span class="o">(</span> <span class="n">NOTE_ON</span><span class="o">,</span> <span class="n">numeratoreMetro</span><span class="o">,</span> <span class="n">denominatoreMetro</span> <span class="o">);</span>
+<span class="k">new</span> <span class="nf">ShortMessage</span><span class="o">(</span> <span class="n">NOTE_ON</span><span class="o">,</span> <span class="n">bpm</span> <span class="o">/</span> <span class="mi">128</span><span class="o">,</span> <span class="n">bpm</span> <span class="o">%</span> <span class="mi">128</span> <span class="o">);</span>
+<span class="k">new</span> <span class="nf">ShortMessage</span><span class="o">(</span> <span class="n">NOTE_OFF</span><span class="o">,</span> <span class="n">numeratoreMetro</span><span class="o">,</span> <span class="mi">0</span> <span class="o">);</span>
+<span class="k">new</span> <span class="nf">ShortMessage</span><span class="o">(</span> <span class="n">NOTE_OFF</span><span class="o">,</span> <span class="n">bpm</span> <span class="o">/</span> <span class="mi">128</span><span class="o">,</span> <span class="mi">0</span> <span class="o">);</span>
+</pre></div>
+</div>
+<div class="section" id="lo-strumento-di-supporto-inseriscitraccespeciali">
+<h3>3.1.3.1 Lo strumento di supporto &#8220;InserisciTracceSpeciali&#8221;<a class="headerlink" href="#lo-strumento-di-supporto-inseriscitraccespeciali" title="link permanente per questa intestazione">¶</a></h3>
+<p>Al fine di semplificare la fase di post-produzione abbiamo realizzato un
+programma Java che, dato in ingresso il materiale descritto nella Sezione
+<a class="reference internal" href="#sec-rec-label">3.1</a>, produce il file MIDI nel formato descritto nella
+Sezione precedente che può essere quindi direttamente utilizzato
+dal nostro script KSP.</p>
+<p class="rubric">Note</p>
+<table class="docutils footnote" frame="void" id="map" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[1]</a></td><td>Per esempio Roland mappa il charleston chiuso sulla nota F#1, mentre uno
+strumento diverso potrebbe associare lo stesso suono ad un&#8217;altra nota.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ext" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[2]</a></td><td>Alcuni kit e-drums limitano il range del messaggio MIDI relativo all&#8217;apertura
+del charleston ad un massimo di 90, mentre noi vogliamo l&#8217;intero intervallo
+possibile di valori che si estende fino a 127.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="strutturedati.html" class="btn btn-neutral float-right" title="3.2 Strutture dati per la rappresentazione dei pattern">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="3 Progetto e sviluppo dell’applicazione"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

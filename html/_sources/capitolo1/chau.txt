@@ -1,0 +1,31 @@
+Chocolate Audio
+===============
+
+.. _fig-chau-label:
+
+.. figure:: /images/chau.*
+  :scale: 20%
+  :align: center
+
+  il logo di Chocolate Audio.
+
+Chocolate Audio :cite:`CHAU` è un'azienda nata nel 2003 e si occupa di sound design e
+produzione di librerie di campioni. Guidata da Simone Coen, ha lavorato
+prevalentemente nell'ambito dei servizi business to business, ovvero il
+cosiddetto "conto terzi", collaborando con aziende del settore quali:
+*Native Instruments*, *Ableton*, *Steinberg*, *Cakewalk*, *Scarbee*, *Arobas*
+e altre.
+
+Pur avendo come impegno principale il lavoro per conto di altre aziende, dal
+2006 Chocolate Audio ha inaugurato una sua linea prodotti, prevalentemente basata su Native
+Instruments (di seguito NI) *Kontakt*, che vende direttamente al pubblico
+tramite la propria presenza online.
+
+Chocolate Audio si è occupata prevalentemente di strumenti acustici o
+elettroacustici ed è particolarmente apprezzata per le sue produzioni in
+ambito di suoni percussivi e batteristici in particolare.
+
+Nell'ottica di lavorare sempre di più nell'affermazione del marchio presso il
+pubblico di produttori, DJ e musicisti, Chocolate Audio sta sviluppando una
+serie di "motori" per strumenti basati su NI Kontakt, in particolare facenti
+capo ai suoni di natura percussiva.

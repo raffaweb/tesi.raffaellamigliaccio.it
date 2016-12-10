@@ -1,0 +1,43 @@
+Il risultato conseguito
+=======================
+
+Il nostro obiettivo è stato progettare e sviluppare un software di supporto
+alla creazione della sezione ritmica di una composizione musicale tenendo ben
+presenti le esigenze e le competenze del musicista.
+
+La materia prima su cui tale applicazione lavora sono i **pattern**, ossia le
+parti ritmiche. Il primo passo del nostro lavoro è quindi stato quello di
+selezionare e categorizzare i generi musicali in modo opportuno, nonché
+produrre i relativi pattern con l'ausilio di un batterista umano, in modo da
+preservare il *timing* e il *feel* del musicista scelto, per offrire la
+massima autenticità possibile all'utente dell'applicazione.
+
+Abbiamo suddividiso i pattern in **tipi** seguendo la classica struttura
+ritmica di una canzone: *intro*, *groove*, *fill* e *outro*. Abbiamo raccolto
+in **song** i pattern che si prestassero ad essere eseguiti nella medesima
+composizione rispettando una logica di genere e gusto. Abbiamo quindi
+costruito una interfaccia utente che rende possibile scegliere un song,
+selezionarne i pattern per tipo e comporli nel rispetto della struttura
+ritmica che abbiamo definito. In questo modo l'utente sceglie con semplicità
+collezioni di pattern che risultano già ben abbinati, ma ha la libertà di
+comporli a suo piacimento.
+
+Con lo scopo di preservare l'*autenticità* dell'esecuzione del musicista
+autore dei pattern li abbiamo memorizzati dopo un processo di post-produzione
+il meno invasivo possibile. D'altro canto, per aumentare la possibilità di
+personalizzazione, abbiamo dotato il software di funzioni che trasformano i
+pattern effettuando dei cambiamenti a livello di tempo (quantizzazione e
+swing) e a livello di intensità. Il software adotta un simile compromesso tra
+la fedeltà ai pattern originali (che comprende la garanzia di andare "a
+tempo") e la libertà espressiva dell'utente consentendogli di cambiare tra un
+pattern e l'altro solo al cadere del prossimo beat (unità di tempo della
+misura) o alla misura.
+
+In fine, considerando che questa applicazione potrebbe essere integrata in un
+contesto più ampio, assieme ad altri strumenti dello stesso tipo, e il suo
+sviluppo sarà soggetto ad una prosecuzione (con particolare riguardo
+all'interfaccia utente), uno dei requisiti di progetto è stato quello di
+modularizzare ed organizzare il codice in modo da facilitare questi passi
+successivi. Questa esigenza è stata soddisfatta, tra l'altro, tramite
+l'utilizzo di strumenti di supporto allo sviluppo che hanno consentito di
+scrivere il codice in modo ben organizzato, modulare e documentato.

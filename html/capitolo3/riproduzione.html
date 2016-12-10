@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.4 Riproduzione dei pattern &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="3 Progetto e sviluppo dell’applicazione" href="index.html"/>
+        <link rel="next" title="3.5 Esportazione dei dati" href="esportazione.html"/>
+        <link rel="prev" title="3.3 Elaborazione dei pattern" href="elaborazione.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo2/index.html">2 Tecnologie e strumenti software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a> &raquo;</li>
+      
+    <li>3.4 Riproduzione dei pattern</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="riproduzione-dei-pattern">
+<h1>3.4 Riproduzione dei pattern<a class="headerlink" href="#riproduzione-dei-pattern" title="link permanente per questa intestazione">¶</a></h1>
+<p>Il punto di forza del nostro software è la possibilità che offre all&#8217;utente di
+comporre le sequenze ritmiche a suo piacimento, è perciò naturale aspettarsi
+che la riproduzione dei pattern segua una logica non banale. Essa può essere
+descritta efficacemente dal diagramma in Figura <a class="pageref" href="#fig-stati-label">1</a>.</p>
+<div class="figure align-center" id="fig-stati-label">
+<a class="reference internal image-reference" href="../_images/stati.png"><img alt="../_images/stati.png" src="../_images/stati.png" style="width: 427.2px; height: 122.4px;" /></a>
+<p class="caption">Figura 1: diagramma di stato della riproduzione.</p>
+</div>
+<p>I possibili stati corrispondono al tipo di pattern in riproduzione, o a
+<em>stop</em>. Non tutte le transizioni di stato sono possibili, questo a causa della
+struttura della parte ritmica in una composizione musicale: nel diagramma
+indichiamo con una linea tratteggiata quelle che l&#8217;utente può <em>causare tramite
+l&#8217;interfaccia utente</em> (a meno di quelle verso lo stato di stop, che sono
+sempre possibili), vicerversa con una linea continua quelle che risultano
+<em>necessarie</em> per via della struttra ritmica (ed avvengono al termine del
+pattern).</p>
+<p>Le questioni principali che abbiamo affrontato nell&#8217;implementazione della
+riproduzione dei pattern sono stati i seguenti:</p>
+<ul class="simple">
+<li>la riproduzione degli eventi MIDI con la corretta temporizzazione,</li>
+<li>la gestione delle transizioni di stato,</li>
+</ul>
+<p>che tratteremo in dettaglio nelle Sezioni seguenti.</p>
+<div class="section" id="temporizzazione">
+<h2>3.4.1 Temporizzazione<a class="headerlink" href="#temporizzazione" title="link permanente per questa intestazione">¶</a></h2>
+<p>Una volta che il pattern è stato preparato nei vettori <tt class="code docutils literal"><span class="pre">%play</span></tt>, per riprodurlo
+è necessario impartire a KSP una serie di comandi di NOTE ON e NOTE OFF in
+corrispondenza dei <em>tick</em> indicati in <tt class="code docutils literal"><span class="pre">%play_pos</span></tt>.</p>
+<p>Una funzionalità essenziale offerta da KSP è il callback <strong>listener</strong> che
+viene invocato periodicamente da Kontakt allo specificato intervallo di tick;
+osserviamo che il legame tra i tick ed il tempo (in secondi) è gestito da
+Kontakt in due modi sostanzialmente diversi:</p>
+<ul class="simple">
+<li>in funzione dei BPM impostati nel software stesso (vedi Figura
+<a class="pageref" href="#fig-bpm-label">2</a>) ,</li>
+<li>oppure in funzione della temporizzazione derivante dalla DAW in cui viene
+utilizzato.</li>
+</ul>
+<div class="figure align-center" id="fig-bpm-label">
+<a class="reference internal image-reference" href="../_images/bpm.png"><img alt="../_images/bpm.png" src="../_images/bpm.png" style="width: 453.0px; height: 62.4px;" /></a>
+<p class="caption">Figura 2: temporizzazione gestita dal &#8220;master&#8221; di Kontakt.</p>
+</div>
+<p>Per riprodurre il pattern, procediamo nel modo seguente:</p>
+<ul class="simple">
+<li>suddividiamo il tempo della riproduzione in beat,</li>
+<li>configuriamo il listener in modo che venga invocato una volta per beat,</li>
+<li>riproduciamo gli eventi all&#8217;interno del beat corrente tramite un ciclo.</li>
+</ul>
+<p>Per gestire la temporizzazione all&#8217;interno del ciclo, per ogni coppia di
+eventi consecutivi, consideriamo la loro distanza in tick <tt class="code docutils literal"><span class="pre">$diff</span></tt> e
+effettuiamo la chiamata:</p>
+<div class="highlight-python"><div class="highlight"><pre>wait( tick_to_ms( $diff ) )
+</pre></div>
+</div>
+<p>dove <tt class="code docutils literal"><span class="pre">wait</span></tt> è una funzione che attende lo specificato numero di microsecondi e
+<tt class="code docutils literal"><span class="pre">tick_to_ms</span></tt> è una funzione che converte una durata in tick nella
+corrispondente durata in microsecondi in accordo alla logica di
+temporizzazione discussa in precedenza.</p>
+</div>
+<div class="section" id="transizioni-di-stato">
+<span id="sec-beatbar-label"></span><h2>3.4.2 Transizioni di stato<a class="headerlink" href="#transizioni-di-stato" title="link permanente per questa intestazione">¶</a></h2>
+<p>Da un punto di vista musicale, le transizioni tra pattern non possono avvenire
+in momenti arbitrari, ma il buon senso suggerisce che accadano solo in
+occasione del passaggio:</p>
+<ul class="simple">
+<li>tra un beat ed il successivo,</li>
+<li>tra una misura e la successiva;</li>
+</ul>
+<p>sebbene dal punto di vista musicale i cambi alla misura risultino più sensati
+(perché, ad esempio, riproducono un pattern nella sua completezza), per
+consentire una maggiore libertà durante la riproduzione e dare maggiore
+responsività all&#8217;interfaccia utente, abbiamo considerato anche i cambi al
+beat.</p>
+<p>Osserviamo che, come discusso in precedenza, alcune transizioni sono originate
+dall&#8217;interfaccia utente e potrebbero causare pertanto eventi asincroni
+rispetto al flusso di esecuzione del programma (eventi cioè che possono
+avvenire in qualunque istante non deciso in anticipo dal programmatore).</p>
+<p>D&#8217;altro canto, la nostra scelta di riprodurre i pattern beat per beat unita
+alla decisione di consentire transizioni solo in occasione del beat, o della
+misura, ci ha permesso una sorta di gestione sincrona.</p>
+<p>Più in dettaglio, gli eventi di interfaccia utente sono gestiti (in modo
+asincrono) dai relativi callback che si limitano ad annotare in opportune
+variabili le modifiche di stato richieste dall&#8217;utente. Periodicamente, ad ogni
+beat, il codice del listener verifica se è necessario attuare cambiamenti di
+stato, sia a causa dell&#8217;interfaccia utente che delle transizioni necessarie, e
+li effettua (in modo sincrono) prima di procedere alla riproduzione del beat
+corrente.</p>
+<p>Questo approccio ha di molto semplificato la stesura del codice ed ha risolto
+una quantità di problemi di conccorrenza e sincronizzazione che sarebbe stato
+molto arduo trattare dati i limiti imposti da KSP.</p>
+</div>
+<div class="section" id="interfaccia-utente">
+<h2>3.4.3 Interfaccia utente<a class="headerlink" href="#interfaccia-utente" title="link permanente per questa intestazione">¶</a></h2>
+<p>L’interfaccia utente (UI) è importante in qualsiasi programma poiché determina
+l’efficacia e validità pratica degli obiettivi che ci si è preposti.</p>
+<p>È fondamentale differenziare, come viene fatto in letteratura, la generica UI
+dalla Graphical User Interface (GUI) <a class="reference internal" href="../zbiblio.html#ui" id="id1">[21]</a>. La seconda è parte integrante
+della prima, ma ne costituisce l&#8217;aspetto più esteriore e superficiale.</p>
+<p>Essendo questa una prima implementazione della nostra soluzione, non ci siamo
+soffermati a creare una vera e propria GUI, ma abbiamo usato gli elementi di
+GUI offerti da Kontakt, con il solo fine di poter verificare le funzionalità
+implementate.</p>
+<p>Abbiamo, però, avuto l&#8217;accortezza di usare elementi di interfaccia che
+potessero essere customizzati in futuro (non tutti gli elementi di GUI di
+Kontakt possono esserlo): come si vede dalle Figure <a class="pageref" href="#fig-uistop-label">3</a> e
+<a class="pageref" href="#fig-uiplay-label">4</a> alcune scelte non sembrano visualmente accattivanti,
+ma sono le uniche che ci permetteranno di creare una vera e propria GUI.</p>
+<p>Abbiamo scelto queste due figure, in quanto rappresentano i due stati
+principali dell&#8217;applicazione, la Figura <a class="pageref" href="#fig-uistop-label">3</a> rappresenta lo
+stato di stop mentre la Figura <a class="pageref" href="#fig-uiplay-label">4</a> quello di play, in
+particolare mostra l’interfaccia mentre un groove è in riproduzione.</p>
+<div class="figure align-center" id="fig-uistop-label">
+<a class="reference internal image-reference" href="../_images/uistop.png"><img alt="../_images/uistop.png" src="../_images/uistop.png" style="width: 442.4px; height: 283.5px;" /></a>
+<p class="caption">Figura 3: l&#8217;interfaccia utente nello stato stop.</p>
+</div>
+<p>Vediamo i dettagli dell&#8217;interfaccia, sono presenti:</p>
+<ul class="simple">
+<li>il <em>file selector</em> che consente di scegliere la song da caricare;</li>
+<li>i bottoni che consentono di cambiare lo stato e sono denominati come i tipi
+(intro, outro, groove e fill), osserviamo che non sono tutti visibili allo
+stesso tempo per via delle transizioni illustrate nella Figura
+<a class="pageref" href="#fig-stati-label">1</a>;</li>
+<li>gli <em>slider</em> <a class="footnote-reference" href="#slider" id="id2"><sup>1</sup></a>, sotto ogni tipo, i quali permettono
+di scegliere uno tra i pattern disponibili;</li>
+<li>i bottoni che consentono di scegliere se effettuare le
+<a class="reference internal" href="#sec-beatbar-label"><em>transizioni al beat o alla misura</em></a>;</li>
+<li>i bottoni che consentono di scegliere uno tra le tre opzioni offerte
+dalla <a class="reference internal" href="elaborazione.html#sec-tempo-label"><em>trasformazione del tempo</em></a>;</li>
+<li>il bottone <em>export</em> che consente di esportare il pattern,
+eventualmente fuso e trasformato, in esecuzione;</li>
+<li>gli <em>slider</em> che permettono di controllare i paramentri delle trasformazioni
+<a class="reference internal" href="elaborazione.html#sec-quantizzazione-label"><em>quantizzazione</em></a>, <a class="reference internal" href="elaborazione.html#sec-swing-label"><em>swing</em></a>,
+e <a class="reference internal" href="elaborazione.html#sec-intensita-label"><em>intesità</em></a>;</li>
+<li>il menù che consente di scegliere la risoluzione della quantizzazione e swing;</li>
+<li>alcuni elementi informativi tra i quali spicca quello (posizionato sopra
+l&#8217;etichetta swing) che permette di seguire il beat in esecuzione all&#8217;interno
+della misura.</li>
+</ul>
+<div class="figure align-center" id="fig-uiplay-label">
+<a class="reference internal image-reference" href="../_images/uiplay.png"><img alt="../_images/uiplay.png" src="../_images/uiplay.png" style="width: 442.4px; height: 283.5px;" /></a>
+<p class="caption">Figura 4: l&#8217;interfaccia utente nello stato groove.</p>
+</div>
+<p class="rubric">Note</p>
+<table class="docutils footnote" frame="void" id="slider" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Questo è uno di quei casi in cui avremmo preferito usare un&#8217;altro elemento di
+interfaccia, chiamato <em>knob</em>, ma abbiamo optato per uno slider a causa della
+sua capacità di essere personalizzato graficamente in una fase successiva.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="esportazione.html" class="btn btn-neutral float-right" title="3.5 Esportazione dei dati">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="elaborazione.html" class="btn btn-neutral" title="3.3 Elaborazione dei pattern"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

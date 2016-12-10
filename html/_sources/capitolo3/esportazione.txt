@@ -1,0 +1,29 @@
+Esportazione dei dati
+=====================
+
+Una volta che l'utente ha composto e trasformato i pattern a suo piacimento
+nei vettori `%play` (ed ha verificato tramite la riproduzione del medesimo le
+sue scelte), il programma mette a disposizione una funzionalità di
+esportazione che consente di utilizzarne il contenuto al di fuori dello
+stesso.
+
+Osserviamo che la fusione e tutte le operazioni di trasformazione sono state
+progettate in modo che i vettori `%play` presentino un contenuto coerente con
+la composizione ritmica: se ad esempio un utente ha effettuato un cambio al
+beat tra groove e fill perdendo alcuni beat del fill, nei vettori `%play` (e
+quindi nell'esportazione), troverà invece tutti i beat del fill alla loro
+posizione corretta.
+
+Da un punto di vista più implementativo, l'esportazione avviene secondo i
+passi seguenti:
+
+- dapprima, usando i dati dei vettori `%play` viene popolato il "MIDI object"
+  che è il buffer in cui Kontakt memorizza i dati MIDI;
+- una volta pronto il "MIDI object", viene attivato uno degli elementi
+  dell'interfaccia grafica al quale è attribuito un comportamento *drag and
+  drop* che, se trascinato, produrrà appunto l'esportazione dei dati dal
+  buffer alla DAW, o ad un file nel sistema ospite.
+
+
+
+

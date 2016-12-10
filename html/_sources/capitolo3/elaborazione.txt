@@ -1,0 +1,326 @@
+Elaborazione dei pattern
+========================
+
+Prima di riprodurre un pattern, potremmo voler modificare alcune sue
+caratterische; a tale scopo abbiamo deciso di mantenere all'interno dei
+vettori `%song` i dati *originali*, e di introdurre una serie di vettori
+paralleli `%play` in cui verrà di volta in volta copiato, o fuso, uno o più
+pattern da trasformare e riprodurre.
+
+
+Fusione di groove e fill/outro
+------------------------------
+
+Quando si passa da un pattern a un altro di diverso tipo, è a volte necessario
+"fondere" le parti piuttosto che suonarle una in sequenza all'altra.
+
+Ad esempio, quando un batterista sta suonando un groove e vuole passare ad un
+fill, lo "incastra" nel punto giusto, senza aspettare che sia prima finito il
+groove. Stesso discorso se il passaggio avviene da groove ad outro.
+
+Facciamo un esempio per capire meglio il punto: usiamo come riferimento la
+coppia "groove - fill" e scegliamo come metro un 4/4, un groove di 16/4, cioè
+4 battute, e un fill di 6/4, cioè una battuta e mezza, come in Figura
+:num:`fig-fusione1-label`.
+
+.. _fig-fusione1-label:
+
+.. figure:: /images/fusione1.*
+  :scale: 50%
+  :align: center
+
+  groove e fill da fondere, come presenti nei vettori `%song`.
+
+Il batterista, dopo aver eseguito il terzo quarto della seconda battuta
+(indicato dalla freccia) vuole inserire il fill. L'operazione di fusione può
+essere descritta come segue:
+
+- si copiano le `n` misure di groove gia interamente suonate
+  (nell'esempio, `n := 1`),
+
+- il fill viene traslato in avanti di `n` misure,
+
+- al posto dei quarti vuoti del fill si copiano i corrispondenti del groove
+  (nell'esempio, i primi due),
+
+- si riempiono i quarti restanti (fino alla lunghezza originale del groove)
+  copiando i quarti del groove (nell'esempio, gli ultimi 4);
+
+questa sequenza di operazioni riempie i vettori `%play` come in Figura
+:num:`fig-fusione2-label`.
+
+.. _fig-fusione2-label:
+
+.. figure:: /images/fusione2.*
+  :scale: 50%
+  :align: center
+
+  risultato della fusione, presente nei vettori `%play`.
+
+A questo punto il batterista procede suonando il quarto quarto della seconda
+misura (indicato dalla freccia). Osserviamo che la fusione ha riguardato anche
+i quarti precedenti a quelli già eseguiti, questo al fine di consentire
+maggiore coerenza in fase di esportazione dei dati, come sarà descritto in
+seguito.
+
+Per gli outro il discorso è lo stesso, con la differenza che al termine dei
+medesimi, la composizione sarà finita e quindi non sarà necesserio considerare
+gli eventuali quarti rimanenti del groove.
+
+
+Trasformazioni
+--------------
+
+Una volta popolati i vettori `%play` con i pattern da riprodurre il software
+consente di applicare delle trasformazioni che riguardano il tempo e
+l'intensità. Queste trasformazioni alterano direttamente i valori dei vettori
+`%play`; le descriviamo qui in seguito.
+
+
+.. _sec-quantizzazione-label:
+
+Quantizzazione
+^^^^^^^^^^^^^^
+
+Spesso un ritmo che risulta essere *a tempo* e musicalmente corretto per
+l'orecchio umano, non lo è per la precisione metronomica della  macchina, ecco
+che entra in gioco la **quantizzazione**.
+
+Abbiamo deciso di inserire questa funzionalità nel software, piuttosto che
+attuare una quantizzazione nella fase di post-produzione, perché avendo
+utilizzato un batterista umano per registare i pattern abbiamo voluto
+preservare il più possibile il timing e il "feel" della sua esecuzione.
+
+Precisamente, quantizzare un pattern significa allineare tutti gli eventi
+(modificandone i *tick*) rispetto ad una griglia di riferimento, nel nostro
+caso la griglia corrisponde a una tra le seguenti figure musicali: ottavo,
+ottavo terzinato, sedicesimo, sedicesimo terzinato, trantaduesimo,
+trentaduesimo terzinato (queste figure sono dette *risoluzione di
+quantizzazione*).
+
+Per ogni evento MIDI consideriamo il tick :math:`t` a cui avviene e calcoliamo
+la differenza :math:`\Delta t` corrispondente allo spostamento necessario a
+riallinearlo alla griglia scelta come segue:
+
+.. math::
+
+	\Delta t =
+		\begin{cases}
+			- ( t \bmod q ) \alpha 	 & \text{se}\quad t \bmod q < q/2 \\
+			( q - t \bmod q ) \alpha & \text{altrimenti}
+		\end{cases}
+
+dove :math:`0\leq\alpha\leq 1` è un parametro che descrive quanto rigorosa
+deve essere la quantizzazione: 0 corrisponde al caso in cui le note non
+verranno spostate e 1 al caso in cui verranno portate esattamente sulla
+griglia.
+
+La porzione di codice che realizza il calcolo di :math:`\Delta t` è la
+seguente::
+
+    $old_pos := %play_pos[ $play_idx ]
+    if ( $old_pos mod $quant_resol <= $quant_resol / 2 )
+      $pos_offset :=
+        - ( $old_pos mod $quant_resol )
+          * 1000 * $quantize_selector / 100000
+    else
+      $pos_offset :=
+        ( $quant_resol - ( $old_pos mod $quant_resol ) )
+          * 1000 * $quantize_selector / 100000
+    end if
+
+dove: `$pos_offset` corridponde a :math:`\Delta t`, `$quant_resol` a :math:`q`
+e adoperiamo lo stratagemma di moltiplicare per `1000 * $quantize_selector /
+100000` per approssimare il calcolo del prodotto per :math:`\alpha`,
+stratagemma reso necessario dal fatto che il linguaggio supporta solo tipi
+interi.
+
+Al fine di quantizzare soltanto la posizione delle note e non la loro durata,
+quando applichiamo tale traslazione ad un evento NOTE ON, sposteremo dello
+stesso :math:`\Delta t` anche l'evento NOTE OFF corrispondente che reperiremo
+usando il vettore `%play_nod` descritto in precedenza.
+
+Come esemplificato dalla Figura :num:`fig-quantize-label`, se :math:`t` è pari
+a 150, con la risoluzione pari a 240 (cioè un sedicesimo) :math:`\alpha` pari
+a 1, :math:`\Delta t` assumerà valore 90.
+
+.. _fig-quantize-label:
+
+.. figure:: /images/quantize.*
+  :scale: 50%
+  :align: center
+
+  spostamento :math:`\Delta t` per la *quantizzazione* in funzione di :math:`t`.
+
+
+.. _sec-swing-label:
+
+Swing
+^^^^^
+
+Ai musicisti è ben noto che suonando un tempo binario come terzinato gli si
+conferisce un gusto afro-americano, altrimenti detto **swing** [#swing]_, che è la
+denominazione usata nei software musicali.
+
+Consideriamo più concretamente un quarto composto da quattro sedicesimi,
+possiamo ottenere lo swing spostando in avanti i sedicesimi pari di ogni
+ottavo. Se descriviamo la misura di questo spostamento in termini della
+percentuale :math:`c` di tempo all'interno dell'ottavo assegnata a ciascun
+sedicesimo si danno ad esempio i seguenti due casi:
+
+- se :math:`c` è pari al 50% i sedicesimi restano al loro posto in quanto
+  occupano ciascuno la metà di un ottavo,
+
+- se aumentiamo :math:`c` al 66%, il secondo e quarto sedicesimo cadranno
+  nella posizione del terzo e sesto sedicesimo terzinato,
+
+- per valori diversi di :math:`c` si possono comunque ottenere effetti
+  interessanti.
+
+In generale, considerando una griglia di riferimento corrispondente a uno tra
+i seguenti valori: trentaduesimo, sedicesimo, ottavo; è possibile  calcolare
+lo spostamento :math:`\Delta t` da applicare all'evento al tick :math:`t`
+secondo la seguente formula:
+
+.. math::
+
+	\Delta t =
+		\begin{cases}
+			\left( \frac{s}{2} -  t \bmod s \right) + s\alpha & \text{se}\quad \left|t \bmod s - \frac{s}{2} \right| \leq s\alpha \\
+			0 & \text{altrimenti}
+		\end{cases}
+
+dove :math:`0\leq\alpha\leq 2/10` è un parametro che descrive quanto maggiore
+deve essere lo swing: 0 corrisponde al caso in cui abbiamo meno swing e 2/10
+al caso in cui abbiamo maggior swing. Il parametro :math:`\alpha` è
+determianto a partire dalla percentuale di swing :math:`c` che, come discusso
+in precedenza, assume valori in :math:`[50,70]` tramite la relazione
+:math:`\alpha = ( c - 50 ) / 100`.
+
+Riportiamo anche in questo caso la porzione di codice che realizza il calcolo
+di :math:`\Delta t`::
+
+  $swing_delta := ( $swing_resol *
+    ( $swing_selector - 50 ) * 1000 ) / 100000
+  if ( abs( $old_pos mod $swing_resol - $swing_resol / 2 ) <= $swing_delta )
+    $pos_offset :=
+      ( $swing_resol / 2 - ( $old_pos mod $swing_resol ) ) + $swing_delta
+  else
+    $pos_offset := 0
+  end if
+
+dove: `$pos_offset` corridponde a :math:`\Delta t`, `$swing_resol` a :math:`s`
+e calcoliamo `$swing_delta` che corridponde approssimativamente a
+:math:`s\alpha` di nuovo usando lo stratagemma `( ...  * 1000 ) / 100000` reso
+sempre necessario dal fatto che il linguaggio supporta solo tipi interi.
+
+Anche nel caso dello swing, modificheremo soltanto la posizione delle note e
+non la loro durata, applicando la stessa traslazione :math:`\Delta t` ad ogni
+NOTE ON e NOTE OFF corrispondente.
+
+Come esemplificato dalla figura :num:`fig-swing-label`, se :math:`t` è pari a
+720, con la risoluzione pari a 480 e :math:`c` pari al 66%, ossia
+:math:`\alpha` pari a 1/6, :math:`\Delta t` è pari a 80 che infatti sposta 720
+a 800 che è la posizione del sesto sedicesimo terzinato.
+
+.. _fig-swing-label:
+
+.. figure:: /images/swing.*
+  :scale: 50%
+  :align: center
+
+  spostamento :math:`\Delta t` per lo *swing* in funzione di :math:`t`.
+
+.. _sec-tempo-label:
+
+Tempo
+^^^^^
+
+Questa trasformazione serve a modificare il tempo della traccia, dando la
+possibilità all'utente di scegliere se raddopiarlo o dimezzarlo, approssimando
+quelli che in letteratura vengono definiti “double time feel” e “half time
+feel” :cite:`Bible`.
+
+Osserviamo che essa agisce alterando i *tick* (raddoppiandone o dimezzandone
+il valore) e non modificando il BPM della traccia.
+
+Anche in questo caso, il limite d'avere a disposizione solo tipi interi ci
+obbliga al codice poco naturale::
+
+    %play_pos[ $play_idx ] :=
+       (  %play_pos[ $play_idx ] * $stretch_amount  ) / 2
+
+dove `$stretch_amount` ha valori 4, 2, o 1 invece dei più ovvi 2, 1 e 1/2.
+
+
+.. _sec-intensita-label:
+
+Intensità
+^^^^^^^^^
+
+Può essere necessario modificare l'intensità e quindi il volume e timbro
+risultante delle note che sono suonate; questo, in un evento MIDI, corrisponde
+a modificare il parametro *velocity* che, secondo lo standard, può assumere
+valori nell'intervallo :math:`[0, 127]`.
+
+Nel nostro caso, partendo da un parametro :math:`c` che assume valori
+nell'intervallo :math:`[-126, 127]`, determineremo un nuovo intervallo di
+variazione per la velocity pari a :math:`[v_{\min}, v_{\max}]` secondo la
+seguente formula:
+
+.. math::
+
+	v_{\min} & = \max{\{ 1, c \}} \\
+	v_{\max} & = \min{\{ c + 127, 127 \}}
+
+che è esemplificata dalla Figura :num:`fig-velocity1-label`.
+
+.. _fig-velocity1-label:
+
+.. figure:: /images/velocity1.*
+  :scale: 50%
+  :align: center
+
+  grafico di :math:`v_{\min}` e :math:`v_{\max}` in funzione del controllo
+  :math:`c`.
+
+Ad esempio, per un valore di :math:`c` pari a 64, si determina il nuovo
+intervallo di variazione  :math:`[64, 127]`.
+
+Osserviamo che l'effetto udibile di valori estremi di :math:`c` è
+l'appiattimento della dinamica del pezzo, con la conseguente perdita degli
+accenti.
+
+Una volta deterimanto il nuovo intervallo di variazione, la velocity di
+:math:`v` di un evento viene modificata (con una trasformazione lineare) nella
+nuova velocity :math:`v'` come:
+
+.. math::
+
+	v' = ( v - 1 ) \frac{ v_{\max} - v_{\min}}{ 126 } + v_{\min}
+
+Di nuovo, secondo l'esempio precedente, la Figura :num:`fig-velocity2-label`
+riporta la trasformazione dell'intervallo :math:`[0, 127]` in :math:`[64,
+127]` corrispondente al valore 64 di :math:`c`:
+
+.. _fig-velocity2-label:
+
+.. figure:: /images/velocity2.*
+  :scale: 50%
+  :align: center
+
+  esempio di trasfomazione della velocità, quando :math:`c` vale
+  64.
+
+.. only:: html or text
+
+  .. rubric:: Note
+
+.. [#swing]
+   il termine *swing* è molto generale e ha più significati, con esso possiamo riferirci a:
+
+   - un ritmo sincopato che è caratteristica comune della musica jazz;
+   - uno stile musicale conosciuto come "swing jazz";
+   - una serie di balli che includono il Lindy Hop, West Coast Swing ecc..
+
+   Nel nostro caso, lo considereremo nella prima accezzione.

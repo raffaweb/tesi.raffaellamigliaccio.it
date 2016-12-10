@@ -1,0 +1,176 @@
+Strumenti di supporto
+=====================
+
+
+Il preprocessore C
+------------------
+
+Il preprocessore C viene utilizzato automaticamente dal compilatore C per
+trasformare il codice sorgente prima di passare alla compilazione :cite:`GCC`. È
+anche detto macro processore perché consente di scrivere delle macro che sono
+delle "abbreviazioni" per porzioni di codice più lunghe.
+
+
+.. highlight:: c
+
+Ad esempio, le seguenti righe di codice C::
+
+	#define GREET "ciao"
+	#define PRINTLN( X ) printf( "%s\n", X )
+
+	PRINTLN( GREET );
+
+vengono tradotte dal preprocessore nel codice::
+
+	printf( "%s\n", "ciao" );
+
+
+Nonostante il preprocessore viene utilizzato solitamente con il C, è possibile
+con qualche accortezza usarlo anche con il Kontakt Scripting Language.
+
+Le caratteristiche del preprocessore che utilizzeremo sono:
+
+Inclusione di file
+  Abbiamo suddiviso il codice in vari file secondo le
+  funzionilità logiche che dovevamo implementare e quindi usato la direttiva
+  `#include` per ottenere da tali file lo script complessivo.
+
+Compilazione condizionale
+  Siccome le dichiarazioni di variabile possono comparire solo nel callback
+  `init` e noi abbiamo diviso il codice in più file, è necessario all'atto di
+  compilazione raccoglierle tutte insieme (inserendole nell'`init`). Per fare
+  questo utilizziamo le direttive di compilazione condizionale `#ifdef`,
+  `#else` e `#endif` per specificare quale porzione di codice debba comparire
+  all'interno del callback `init`.
+
+Commenti
+  A causa di alcune incompatibilità, per poter introdurre testo senza vincoli
+  nei commenti degli script li abbiamo inclusi in commenti stile C (racchiusi
+  cioè tra `/*` e `*/`).
+
+Macro di tipo "oggetto"
+  Con questa definizione intendiamo delle macro, definite tramite la direttiva
+  `#define`, usate come abbreviazioni di costanti. Ad esempio: il tipo di parte
+  correntemente in esecuzione è un numero intero, ma nel codice usiamo le macro
+  `INTRO`, `GROOVE`, `FILL` e `OUTRO` (invece dei valori interi cui
+  corrispondono) per aumentare la leggibilità del codice. Per aggirare le
+  differenze tra C e KSP in merito al preprocessore, definiamo una macro che
+  vale `#`, questo carattere in C è "riservato" al preprocessore (non può essere
+  dunque usato nella definizione delle macro) ma in KSP esso rappresenta
+  l'operatore logico `diverso`.
+
+
+Macro di tipo "funzione"
+  Con questa definizione intendiamo delle macro, definite tramite la direttiva
+  `#define`, usate come "approssimazione" di `funzioni con parametri` (che sono
+  assenti in KSP). Si tratta anche in questo caso di una soluzione sintattica
+  che ci aiuta moltissimo a migliorare la leggibilità e stesura del codice. Ad
+  esempio: usiamo una serie di queste macro per definire e disporre gli elementi
+  di interfaccia grafica (operazione che richiede un numero elevato e ripetitivo
+  di chiamate a funzioni KSP).
+
+
+Fusione delle linee
+  Il preprocessore consente per ragioni di leggibilità di spezzare le linee di
+  codice nel testo sorgente, provvedendo a concatenarle in un unica linea
+  prima di procedere alla compilazione vera e propria; questo per il C va
+  bene, ma purtroppo non per KSP, dove invece ogni linea può contenere al più
+  una singola istruzione. Per questa ragione useremo uno stratagemma (basato
+  su una ulteriore sostituzione ad opera di un tool diverso dal preprocessore)
+  che consenta da un lato di dividere le macro più complesse su più linee, ma
+  dall'altro di ripristinare la divisione delle medesime in linee (dopo la
+  fusione effettuata dal preprocessore).
+
+
+Infine possiamo dire che nonostante il preprocessore C sia uno strumento molto
+datato e da noi utilizzato fuori del suo ambito di utilizzo, ci ha consentito
+di ottenere enormi benefici nella stesura del codice, permettendoci di
+modularizzarlo sia suddividendolo in file che utilizzando le macro e di
+aumentarne di gran lunga la leggibilità.
+
+Nonostante sul mercato ci siano strumenti con funzionalità analoghe e, se
+vogliamo, più specifiche per KSP, abbiamo scelto di utilizzare il
+preprocessore per la sua stabilità e diffusione (esso è infatti uno strumento
+correntemente manutenuto e disponibile, con funzionalità sostanzialmente
+invariate da moltissimi anni), inoltre è uno strumento ben noto a chiunque
+abbia programmato in C.
+
+
+Make
+----
+
+Lo strumento di costruzione `make` è un software in grado di effettuare in
+modo automatico i passi di un processo di compilazione che devono essere
+eseguiti.
+
+Nel nostro caso dobbiamo infatti applicare una serie di passi ai file sorgente
+in cui abbiamo suddiviso il codice al fine di ottenere lo script finale. Nello
+specifico dobbiamo invocare il preprocessore e lo strumento che abbiamo usato
+per spezzare su più linee quelle fuse dal preprocessore.
+
+Le ragioni per cui abbiamo deciso di utilizzare questo tool sono simili a
+quelle per cui utilizziamo il preprocessore: anche in questo caso si tratta di
+uno strumento estremamente diffuso, stabile e ben noto.
+
+
+Java
+----
+
+Java :cite:`Java` è un linguaggio orientato agli oggetti, originariamente rilasciato
+da Sun nel 1995, ed è ad oggi uno dei linguaggi più diffusi, in particolare nel
+mondo delle applicazioni web.
+
+Tra le caratteristiche principali di questo linguaggio ci sono: la sua elevata
+portabilità (`Java` viene eseguito da un interprete, denominato `Java Virtual
+Machine`, il quale è disponibile sostanzialmente per tutti i sistemi
+operativi), il supporto nativo per la concorrenza ed il multithreading, la
+gestione automatica della memoria dinamica e una ricchissima dotazione di API.
+
+In particolare, nell'ambito della tesi, abbiamo scelto di utilizzare Java
+proprio per il supporto offerto dalle sue API per la gestione del MIDI. Il
+pacchetto `javax.sound.midi` :cite:`JavaxSoundMidi` consente di leggere e scrivere
+file multitraccia in formato MIDI standard e di analizzarne e modificarne il
+contenuto con estrema facilità.
+
+
+Editor
+------
+
+Il *KScript Editor* :cite:`KScriptEditor`, sviluppato da Nils Liberg, è uno degli
+editor più utilizzati fra i programmatori che usano il *Kontakt Scripting
+Language*. Oltre le usuali funzionalità di colorazione della sintassi e
+navigazione del codice, esso offre la possibilità di ampliare la sintassi
+originale del linguaggio offrendo costrutti più avanzati come ad esempio i
+cicli for, o un limitato supporto delle funzioni con parametri.
+
+Dopo una prima analisi, abbiamo però deciso di non utilizzare tale editor.
+Principalmente perchè non volevamo legare il nostro codice ad uno strumento
+del quale non avessimo precise garanzie di stabilità e supporto.
+Secondariamente abbiamo preferito usare strumenti più *general purpose*,
+specie negli editor, dove non abbiamo trovato conveniente utilizzare un editor
+specifico per il solo *Kontakt Scripting Language*.
+
+La nostra scelta si è orientata su *Sublime Text* :cite:`Sublime`, un editor molto
+diffuso per programmatori, che supporta un gran numero di linguaggi di
+programmazione, anche grazie alla disponibilità di un vasto numero di plugin,
+uno dei quali :cite:`SublimeKSP` specificatamente sviluppato, sempre da
+Nils Liberg, per KSP.
+
+Rispetto alle estensioni del linguaggio offerte da *KScript Editor* abbiamo
+preferito, come discusso nelle sezioni precedenti, l'uso del preprocessore C,
+in quanto decisamente più diffuso e mantenuto.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

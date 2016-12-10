@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2 Strutture dati per la rappresentazione dei pattern &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="3 Progetto e sviluppo dell’applicazione" href="index.html"/>
+        <link rel="next" title="3.3 Elaborazione dei pattern" href="elaborazione.html"/>
+        <link rel="prev" title="3.1 Produzione dei pattern" href="produzione.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo2/index.html">2 Tecnologie e strumenti software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo4/index.html">4 Conclusioni e sviluppi futuri</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo4/sviluppi.html">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">3 Progetto e sviluppo dell&#8217;applicazione</a> &raquo;</li>
+      
+    <li>3.2 Strutture dati per la rappresentazione dei pattern</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="strutture-dati-per-la-rappresentazione-dei-pattern">
+<h1>3.2 Strutture dati per la rappresentazione dei pattern<a class="headerlink" href="#strutture-dati-per-la-rappresentazione-dei-pattern" title="link permanente per questa intestazione">¶</a></h1>
+<p>Dopo una serie di sperimentazioni e prendendo in considerazione i limiti del
+linguaggio, abbiamo convenuto che il modo più consono per la rappresentazione
+di dati strutturati come gli eventi MIDI è l&#8217;utilizzo di vettori paralleli,
+ossia di una serie di vettori (uno per ciascun tipo di dato), in cui le
+informazioni relative al medesimo evento sono memorizzate allo stesso indice.</p>
+<p>La prima operazione che effettuiamo è quindi il caricamento del file MIDI
+multitraccia all&#8217;interno di Kontakt; questo avviene popolando una serie di
+array paralleli il cui nome inzia per <tt class="code docutils literal"><span class="pre">%song</span></tt>. Oltre le usuali informazioni in
+merito agli eventi MIDI, avremo bisogno in seguito anche di un altro dato e
+cioè, per ciascun NOTE ON, la posizione del suo NOTE OFF corrispondente. Nel
+dettaglio, per l&#8217;<tt class="code docutils literal"><span class="pre">i</span></tt>-esimo evento i vettori conterranno:</p>
+<ul class="simple">
+<li><tt class="code docutils literal"><span class="pre">%song_pos[</span> <span class="pre">i</span> <span class="pre">]</span></tt>: la posizione in tick,</li>
+<li><tt class="code docutils literal"><span class="pre">%song_cmd[</span> <span class="pre">i</span> <span class="pre">]</span></tt>: il comando,</li>
+<li><tt class="code docutils literal"><span class="pre">%song_byte_one[</span> <span class="pre">i</span> <span class="pre">]</span></tt>: il primo byte dello <em>short message</em>,</li>
+<li><tt class="code docutils literal"><span class="pre">%song_byte_two[</span> <span class="pre">i</span> <span class="pre">]</span></tt>: il secondo byte dello <em>short message</em>,</li>
+<li><tt class="code docutils literal"><span class="pre">%song_nod[</span> <span class="pre">i</span> <span class="pre">]</span></tt>: se l&#8217;<tt class="code docutils literal"><span class="pre">i</span></tt>-esimo evento è un NOTE ON, il
+valore <tt class="code docutils literal"><span class="pre">j</span> <span class="pre">-</span> <span class="pre">i</span></tt>, dove <tt class="code docutils literal"><span class="pre">j</span></tt> è l&#8217;indice del NOTE OFF corrispondente,
+altrimenti -1.</li>
+</ul>
+<p>Poichè intendiamo caricare consecutivamente gli eventi di tutti i pattern,
+abbiamo bisogno di un modo per tener traccia della posizione iniziale di
+ciascun pattern; a tale scopo usiamo l&#8217;array <tt class="code docutils literal"><span class="pre">%patterns_offsets</span></tt> tale per cui
+<tt class="code docutils literal"><span class="pre">%patterns_offsets[</span> <span class="pre">p</span> <span class="pre">]</span></tt> è l&#8217;indice nei vettori <tt class="code docutils literal"><span class="pre">%song</span></tt> del <tt class="code docutils literal"><span class="pre">p</span></tt>-esimo pattern.
+Inoltre, per tener traccia di dove sono collocati i vari tipi, adopereremo
+l&#8217;array <tt class="code docutils literal"><span class="pre">%kinds_offsets</span></tt> tale per cui <tt class="code docutils literal"><span class="pre">%kinds_offsets[</span> <span class="pre">k</span> <span class="pre">]</span></tt> è l&#8217;indice in
+<tt class="code docutils literal"><span class="pre">%patterns_offsets</span></tt> del primo pattern del tipo <tt class="code docutils literal"><span class="pre">k</span></tt>-esimo (i tipi sono numerati
+da 0 e nel seguente ordine: intro, outro, groove e fill).</p>
+<p>Tali vettori e le loro relazioni sono esemplificate dalla figura
+<a class="pageref" href="#fig-song-label">1</a></p>
+<div class="figure align-center" id="fig-song-label">
+<a class="reference internal image-reference" href="../_images/song.png"><img alt="../_images/song.png" src="../_images/song.png" style="width: 819.0px; height: 576.9px;" /></a>
+<p class="caption">Figura 1: rappresentazione visuale dei vettori che contengono la song.</p>
+</div>
+<p>Ad esempio gli eventi relativi al sesto fill occuperanno le posizioni dei
+vettori <tt class="code docutils literal"><span class="pre">%song</span></tt> che vanno dall&#8217;indice <tt class="code docutils literal"><span class="pre">inizio</span></tt> a <tt class="code docutils literal"><span class="pre">fine</span></tt> (compresi), calcolati
+come segue:</p>
+<div class="highlight-python"><div class="highlight"><pre>k := 3 { 3 corrisponde al tipo fill }
+p := %kinds_offsets[ k ] + 5 { il sesto fill ha indice 5 }
+inizio := %patterns_offsets[ p ]
+fine := %patterns_offsets[ p + 1 ] - 1
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="elaborazione.html" class="btn btn-neutral float-right" title="3.3 Elaborazione dei pattern">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="produzione.html" class="btn btn-neutral" title="3.1 Produzione dei pattern"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

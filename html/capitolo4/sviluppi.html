@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.2 Nuove funzionalità &mdash; Scripting KSP 1.0 documentazione</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Scripting KSP 1.0 documentazione" href="../index.html"/>
+        <link rel="up" title="4 Conclusioni e sviluppi futuri" href="index.html"/>
+        <link rel="next" title="5 Bibliografia e sitografia" href="../zbiblio.html"/>
+        <link rel="prev" title="4.1 Il risultato conseguito" href="risultati.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="/" class="fa fa-home"> La mia tesi</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../capitolo1/index.html">1 Stato dell&#8217;arte ed obiettivi della tesi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/chau.html">1.1 Chocolate Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/arte.html">1.2 Lo stato dell&#8217;arte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo1/obiettivi.html">1.3 Obiettivi del lavoro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo2/index.html">2 Tecnologie e strumenti software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/midi.html">2.1 Musical Instrument Digital Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/kontakt.html">2.2 Kontakt Script Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo2/strumenti.html">2.3 Strumenti di supporto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capitolo3/index.html">3 Progetto e sviluppo dell&#8217;applicazione</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/produzione.html">3.1 Produzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/strutturedati.html">3.2 Strutture dati per la rappresentazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/elaborazione.html">3.3 Elaborazione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/riproduzione.html">3.4 Riproduzione dei pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../capitolo3/esportazione.html">3.5 Esportazione dei dati</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4 Conclusioni e sviluppi futuri</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="risultati.html">4.1 Il risultato conseguito</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.2 Nuove funzionalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zbiblio.html">5 Bibliografia e sitografia</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Scripting KSP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+<!--
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">4 Conclusioni e sviluppi futuri</a> &raquo;</li>
+      
+    <li>4.2 Nuove funzionalità</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+-->
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="nuove-funzionalita">
+<h1>4.2 Nuove funzionalità<a class="headerlink" href="#nuove-funzionalita" title="link permanente per questa intestazione">¶</a></h1>
+<p>La raccolta del materiale audio, la progettazione e sviluppo
+dell&#8217;applicazione, nonché le fasi di validazione del lavoro svolto hanno
+comportato un notevole sforzo e hanno richiesto molto tempo. Questo anche in
+funzione delle criticità del linguaggio di programmazione offerto dallo
+strumento che abbiamo scelto e alla scarsezza della documentazione che, in
+alcuni casi, hanno reso necessarie molteplici iterazioni di sviluppo prima di
+poter conseguire i risultati che ci eravamo prefissati.</p>
+<p>Durante lo svolgimento dello stage, sono emerse una serie di possibili
+migliorie da apportare al software che non è stato possibile attuare nel tempo
+a disposizione; per questa ragione, ne diamo una breve descrizione nel seguito
+con l&#8217;intento di tracciare una possibile strada per gli sviluppi futuri.</p>
+<div class="section" id="gestione-a-piu-dimensioni-dei-pattern">
+<h2>4.2.1 Gestione a più dimensioni dei pattern<a class="headerlink" href="#gestione-a-piu-dimensioni-dei-pattern" title="link permanente per questa intestazione">¶</a></h2>
+<p>Chiunque ascolti un batterista alle prime armi ed un professionista
+improvvisare su uno stesso ritmo, comprenderebbe immediatamente cosa
+intendiamo nel definire più &#8220;complessa&#8221; l&#8217;esecuzione del secondo rispetto a
+quella del primo: essa avrà più sfumature, più variazioni ritmiche, più
+colore.</p>
+<p>Ci piacerebbe che il nostro software consentisse all&#8217;utente, dato un pattern,
+di variarne la complessità (nel senso dell&#8217;esempio precedente). Per di più, ci
+piacerebbe consentire di variare in modo indipendente la complessità di
+&#8220;gruppi&#8221; di pezzi della batteria, come ad esempio: il rullante, la cassa, i
+piatti e via discorrendo.</p>
+<p>Similmente, come ora il nostro software consente di variare l&#8217;intensità
+complessiva di un pattern, ci piacerebbe che anche questo parametro potesse
+essere modificato in modo indipendente per i vari gruppi di pezzi.</p>
+<p>In qualche senso, vorremmo implementare una variazione a &#8220;tre dimensioni&#8221; delle
+caratteristiche di un pattern dove:</p>
+<ul class="simple">
+<li>la prima dimensione rappresenti i diversi gruppi;</li>
+<li>la seconda dimensione le possibili complessità;</li>
+<li>la terza dimensione i vari gradi di intensità.</li>
+</ul>
+<div class="section" id="il-caso-delle-percussioni">
+<h3>4.2.1.1 Il caso delle percussioni<a class="headerlink" href="#il-caso-delle-percussioni" title="link permanente per questa intestazione">¶</a></h3>
+<p>La struttura a più dimensioni diventa di particolare interesse nel caso delle
+percussioni propriamente dette come, ad esempio, bonghi, congas, timbales,
+tamburelli, triangoli.</p>
+<p>Se infatti nella batteria può essere considerato caso abbastanza raro il voler
+modificare complessità ed intensità per gruppi di pezzi (comunque suonati da
+un solo musicista), in un&#8217;accompagnamento basato su percussioni (suonate in
+genere da diversi musicisti) è viceversa molto comune voler trattare ciascuno
+strumento in modo indipendente.</p>
+<p>Una gestione a più dimensioni dei pattern potrebbe essere quindi di grande
+interesse qualora fosse relizzata in modo sufficientemente generale da
+adattarsi al contempo sia al caso della batteria, che a quello delle
+percussioni.</p>
+</div>
+</div>
+<div class="section" id="trasformazioni-orientate-ai-pattern-percussivi">
+<h2>4.2.2 Trasformazioni orientate ai pattern percussivi<a class="headerlink" href="#trasformazioni-orientate-ai-pattern-percussivi" title="link permanente per questa intestazione">¶</a></h2>
+<p>Il nostro software si occupa esclusivamente di pattern percussivi, ma al
+momento le sue funzioni di trasformazione non tengono conto di questa
+specificità così marcata.</p>
+<p>Ad esempio, la quantizzazione come descritta nella Sezione <a class="reference internal" href="../capitolo3/elaborazione.html#sec-quantizzazione-label">3.3.2.1</a>,
+agisce in modo omogeneo su tutti gli eventi e in presenza di un <em>flam</em>
+<a class="footnote-reference" href="#flam" id="id1"><sup>1</sup></a>  &#8220;schiaccerebbe&#8221; i due colpi da cui è costituito in uno solo,
+facendone di fatto perdere la sfumatura.</p>
+<p>Ci piacerebbe investigare come riconoscere i <em>flam</em>, o simili casi particolari,
+in modo automatico (o grazie ad una speciale &#8220;marcatura&#8221; degli eventi
+effettuata in fase di post-produzione) in modo da poter sviluppare funzioni
+di trasformazione più specifiche.</p>
+<p>Secondo l&#8217;esempio precedente, potremmo sviluppare delle funzioni di
+trasformazione temporale che offrano:</p>
+<ul class="simple">
+<li>una forma di quantizzazione che rispetti tali casi (non alterando il
+tempo degli eventi coinvolti);</li>
+<li>una sorta di &#8220;semplificazione&#8221; che, viceversa, sia in grado di
+eliminarli.</li>
+</ul>
+</div>
+<div class="section" id="interfaccia-utente">
+<h2>4.2.3 Interfaccia utente<a class="headerlink" href="#interfaccia-utente" title="link permanente per questa intestazione">¶</a></h2>
+<p>Osservando il risultato finale dell&#8217;applicazione, è evidente che l&#8217;interfaccia
+utente che abbiamo sviluppato è quanto meno minimale. Come già detto, dati i
+vincoli temporali, ci siamo infatti limitati a mettere a disposizione
+dell&#8217;utente, con chiarezza e semplicità d&#8217;uso, tutte le funzionalità
+implementate dal software, pur senza pretesa di farlo con un aspetto
+accattivante.</p>
+<p>D&#8217;altro canto, se vogliamo che questa applicazione si possa rivolgere ad un
+pubblico più ampio, diventando magari un prodotto commerciale, sarà necessario
+intraprendere uno studio più approfondito dell&#8217;interazione con l&#8217;utente, ad
+esempio secondo quanto suggerito in  <a class="reference internal" href="../zbiblio.html#musichci" id="id2">[18]</a>. Dopo tale studio, si
+potrebbe procedere ad implementare elementi di interfaccia personalizzati, pur
+nei limiti imposti da NI Kontakt che non consente un completo controllo della
+GUI.</p>
+<p class="rubric">Note</p>
+<table class="docutils footnote" frame="void" id="flam" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Un <em>flam</em> consiste in due colpi singoli suonati da mani alterne: il primo colpo meno intenso,
+seguito da un colpo primario più forte della mano opposta. I due colpi sono suonati quasi
+simultaneamente e sono intesi suonare come un sol colpo.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../zbiblio.html" class="btn btn-neutral float-right" title="5 Bibliografia e sitografia">Prossima <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="risultati.html" class="btn btn-neutral" title="4.1 Il risultato conseguito"><span class="fa fa-arrow-circle-left"></span> Precedente</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Raffaella Migliaccio.
+    </p>
+  </div>
+
+  <!--
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  -->
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49277456-4', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

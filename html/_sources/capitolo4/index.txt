@@ -1,0 +1,15 @@
+*****************************
+Conclusioni e sviluppi futuri
+*****************************
+
+.. figure:: /images/sound_of_muzak.*
+  :scale: 80%
+  :align: right
+
+Concludiamo la tesi con uno sguardo d'insieme sui risultati ottenuti e con una
+proposta per i possibili sviluppi futuri.
+
+.. toctree::
+
+   risultati
+   sviluppi
